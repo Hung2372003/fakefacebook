@@ -1,0 +1,92 @@
+.picsum-img-wrapper{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.view-image{
+    height: 100vh;
+    width: 100%;
+    overflow: hidden;
+}
+
+.carousel-control-prev{
+    z-index: 0 !important;
+  }
+  .carousel-control-next{
+    z-index: 0 !important;
+  }
+.carousel{
+    height: 100%;
+    
+}
+.carousel-inner {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    padding-top: 10px;
+}
+.close-btn{
+    position: absolute;
+    top: 3vh;
+    right: 3vh;
+    color: white;
+    font-size: 3vh;
+    background: #313131;
+    aspect-ratio: 1 / 1;
+    height: 5vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    cursor: pointer;
+    z-index: 1;
+    &:hover{
+        background:#676767 ;
+    }
+}
+//--------------------------------
+.carousel-indicators-custom {
+    display: flex;
+    gap: 1vh;
+    overflow-x: auto;
+    overflow-y: hidden;
+    padding-bottom: 3px;
+    max-width: 100%;
+    align-items: flex-end;
+    height: 20vh;
+    padding-left: 1vh;
+    padding-right: 1vh;
+    scroll-behavior: smooth;
+}
+
+.carousel-indicators-custom div {
+    height: 10vh;
+    margin: 0 0px;
+    cursor: pointer;
+    aspect-ratio: 1 / 1;
+    border-radius: 7px;
+    display: flex;
+}
+
+.carousel-indicators-custom img {
+    height: 100%;
+    border-radius: 25%;
+    filter: brightness(0.6);
+    aspect-ratio: 1 / 1;
+  
+//   object-fit: contain;
+}
+
+.carousel-indicators-custom div.active img {
+  border: 2px solid #fff; /* Hiển thị viền khi indicator đang active */
+  filter: brightness(1.1);
+}
+.carousel-view-image{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    padding-bottom: 7px;
+    align-items: center;
+}
+

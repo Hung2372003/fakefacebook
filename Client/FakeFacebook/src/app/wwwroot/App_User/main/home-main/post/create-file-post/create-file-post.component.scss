@@ -1,0 +1,148 @@
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif !important; }
+
+h6{
+    padding: 0;
+    margin: 0;
+    color: black;
+    font-weight: 500;
+    font-family: Roboto, "Helvetica Neue", sans-serif !important;
+
+}
+p{
+    margin: 0;
+    padding: 0;
+}
+.post-content textarea {
+    width: 100%;
+    border: none;
+    resize: none;
+    font-size: 16px;
+    outline: none;
+    padding: 5px;
+  }
+  
+  .post-content textarea::placeholder {
+    color: #888;
+  }
+ .view-file{
+    border: 1px solid #bebebe;
+    border-radius: 5px;
+    padding: 7px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+ } 
+ .no-file{
+    aspect-ratio: 2 / 1;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 23px;
+    background: #f0f0f05e;
+    border-radius: 10px;
+    flex-direction: column;
+    cursor: pointer;
+    &:hover{
+        background: #f0f0f0;
+    }
+ }
+ .icon{
+    aspect-ratio: 1 / 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 17%;
+    border-radius: 50%;
+    background: #e1e1e1;
+    color: black;
+ }
+
+ .file-container{
+    width: 100%;
+    border-radius: 10px;
+    img{
+        width: 100%;
+    }
+ }
+
+ ul{
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+ }
+ .list-file{
+    position: relative;
+    width: 100%;
+    border-radius: 7px;
+ }
+ .list-file::after {
+    content: "";
+    position: absolute;
+    border-radius: 7px;
+    top: 0px;
+    right: 0px;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0); /* Màu phủ ban đầu */
+}
+// .list-file:hover ~ .action{
+//     display: flex !important;
+// }
+// .list-file:hover::after ~ .action{
+//     display: flex !important;
+// }
+.list-file:hover::after {
+    background-color: rgb(0 0 0 / 13%);
+}
+.action{
+
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    gap: 17px;
+    color: black;
+    display: flex;
+    z-index: 1;
+}
+.button-action{
+    display: flex;
+    gap: 7px;
+    align-items: center;
+    background: white;
+    padding: 10px;
+    border-radius: 7px;
+    box-shadow: 0px 0px 7px 1px #bfbfbf;
+    font-weight: 500;
+    cursor: pointer;
+    &:hover{
+        background: rgb(236, 236, 236);
+    }
+}
+.close-button{
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    border-radius: 50%;
+    background: white;
+    border: 1px solid rgb(201, 201, 201);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: black;
+    padding: 7px;
+    z-index: 1;
+    font-size: 20px;
+    aspect-ratio: 1 / 1;
+    height: 35px;
+    cursor: pointer;
+    &:hover{
+        background: rgb(236, 236, 236);
+    }
+    // box-shadow: 0px 0px 7px 1px #bfbfbf;
+    i{
+        color: black;
+    }
+}

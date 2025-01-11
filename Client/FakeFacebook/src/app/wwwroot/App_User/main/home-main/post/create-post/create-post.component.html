@@ -1,0 +1,46 @@
+<div class="post-container">
+    <!-- Phần tiêu đề -->
+    <div class="header">
+      <h2>Tạo bài viết</h2>
+      <span (click)="closeCreatePost()" class="close-btn">&times;</span>
+    </div>
+
+    <!-- Thông tin người dùng -->
+    <div class="user-info">
+      <img src="{{infor.avatar}}" alt="Avatar" class="avatar" />
+      <div class="user-details">
+        <p class="user-name">{{infor.name}}</p>
+        <select [(ngModel)]="selectedVisibility" class="visibility">
+          <option value="PUBLIC"><b>Công khai</b></option>
+          <option value="FRIEND"><b>Bạn bè</b></option>
+          <option value="ONLY-ME"><b>Chỉ mình tôi</b></option>
+        </select>
+      </div>
+    </div>
+
+    <!-- Phần soạn bài viết -->
+    <div class="compose-container">
+      <!-- <div class="post-content">
+        <textarea placeholder="{{infor.name}} ơi, bạn đang nghĩ gì thế?"rows="4"></textarea>
+      </div> -->
+      <div class="post-file"> 
+        <app-create-file-post></app-create-file-post>
+      </div>
+    </div>
+    
+
+    <!-- Thêm vào bài viết -->
+    <!-- <div class="add-content">
+      <p class="add-title">
+        Thêm vào bài viết của bạn: 
+        <span class="icon">
+          <i class="fa-solid fa-images"></i>
+        </span>
+      </p>
+    </div> -->
+
+    <!-- Nút đăng bài -->
+    <div class="post-footer">
+      <button (click)="createPost()" class="post-btn">Đăng</button>
+    </div>
+  </div>

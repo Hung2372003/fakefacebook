@@ -1,0 +1,46 @@
+<div class="chat-container">
+    <!-- Thanh tìm kiếm -->
+    <div class="header-title">
+        Đoạn Chat
+    </div>
+
+    <div class="search-bar">
+        <div class="search-wrapper">
+            <i class="fa fa-search search-icon"></i>
+            <input type="text" placeholder="Tìm kiếm trên Messenger" class="search-input">
+        </div>
+    </div>
+    
+    
+
+    <!-- Các mục "Hộp thư" và "Cộng đồng" -->
+    <!-- <div class="menu-bar">
+        <button class="menu-item active" id="inbox-tab" onclick="showTab('inbox')">Hộp thư</button>
+        <button class="menu-item" id="community-tab" onclick="showTab('community')">Cộng đồng</button>
+    </div> -->
+    <div id="inbox" class="chat-list active">
+        <ng-container *ngFor="let item of ListNewMessage">
+            <div (click)="openChat(item)" class="chat-item">
+                <img src="{{item.groupAvatar}}" alt="Avatar" class="avatar">
+                <ng-container *ngIf="checkOnline(item.listUser)">
+                    <div class="online-dot"></div>
+                </ng-container>
+              
+                <div class="chat-info-row">
+                    <div class="chat-info">
+                        <h4 class="name">{{item.groupName}}</h4>
+                        <ng-container *ngIf="item.status==true;else notRead">
+                            <p class="last-message">{{item.newMessage.content}}</p>
+                        </ng-container>
+                        <ng-template #notRead>
+                            <p style="font-weight: 500;color: black;" class="last-message">{{item.newMessage.content}}</p>
+                        </ng-template>
+                    </div>
+                    <div>
+                         <span class="time">{{setDate(item.newMessage.createdTime)}}</span>
+                    </div>
+                </div>
+            </div>
+        </ng-container>
+    </div>
+</div>

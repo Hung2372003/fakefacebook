@@ -1,0 +1,29 @@
+
+<div class="close-btn" (click)="closeViewFile()"><i class="fa-regular fa-xmark"></i></div>
+@if (listImage.length>0) {
+    <div class="carousel-view-image" s>
+        <div class="view-image">
+            <ngb-carousel #carousel [activeId]="activeSlideId" (slide)="onSlideChange($event)">
+                <ng-container *ngFor="let item of listImage" >
+                <ng-template ngbSlide [id]="item.id.toString()">
+                    <div class="picsum-img-wrapper">
+                        <img [src]="item.path" alt="Random first slide" />
+                    </div>
+                    <!-- <div class="carousel-caption">
+                        <h3>10 seconds between slides...</h3>
+                        <p>This carousel uses customized default values.</p>
+                    </div> -->
+                </ng-template>
+             </ng-container>
+            </ngb-carousel>       
+        </div>	
+        <div class="carousel-indicators-custom" #carouselIndicators>
+            <ng-container *ngFor="let item of listImage" >
+                <div  [ngClass]="{'active': carousel.activeId === item.id.toString()}" (click)="carousel.select(item.id.toString())">
+                    <img [src]="item.path" alt="indicator" />
+                </div>
+            </ng-container>  
+        </div>
+    </div>
+   
+}

@@ -1,0 +1,100 @@
+<div class="comment-section">
+    <!-- Phần tiêu đề bài viết và nút X -->
+    <div class="header">
+        <div class="post-header">
+        <span class="post-title">Bài viết của {{postName}}</span>
+        <button (click)="closePostComment()" class="close-button">&times;</button>
+        </div>
+
+        <!-- Dropdown lựa chọn -->
+        <div class="filter-section">
+        <select id="comment-filter">
+            <option value="relevant">Phù hợp nhất</option>
+            <option value="newest">Mới nhất</option>
+            <option value="all">Tất cả bình luận</option>
+        </select>
+        </div>
+    </div>
+
+    <!-- Phần bình luận -->
+
+    <div class="list-comment">
+        <ng-container *ngIf="listComment.length==0" >
+            <div><p>Chưa có bình luận nào về bài viết này</p></div>
+        </ng-container>
+        <ng-container *ngFor="let item of listComment" >
+            <div class="comment">
+                <div class="user-info">
+                    <img src="{{item.avatar}}" alt="" />
+                </div>
+                <div class="text-date-container">
+                    <div class="text-container">
+                        <div class="username">{{item.name}}</div>
+                        <p class="comment-text">
+                            {{item.content}}
+                        </p>
+                    </div>             
+                    <div class="comment-actions">
+                        <span class="time">{{setDate(item.createdTime)}}</span>
+                        <span style="margin-left:3px;" class="action like">Thích</span>
+                        <span class="separator">·</span>
+                        <span class="action">Phản hồi</span>
+                    </div>
+                </div>
+            </div>
+        </ng-container>
+
+        <!-- <div class="comment">
+            <div class="user-info">
+                <img src="/img/avt_1.jpg" alt="User Avatar" />
+                <span class="username">Nguyễn Van A</span>
+            </div>
+            <p class="comment-text">
+                Cạy cái case ráp vô. Cái mảnh cắt của khe usb nó chọc vô ổ usb. Cuối
+                cùng không lắp được chuột bàn phím.<br />
+                Miếng sắt cộm lên không lắp được cáp mạng. Thế là phải tháo ra làm lại
+                từ đầu kkkkk 😆
+            </p>
+            <div class="comment-actions">
+                <span class="time">2 ngày</span>
+                <span class="action">Thích</span>
+                <span class="separator">·</span>
+                <span class="action">Phản hồi</span>
+            </div>
+        </div>
+
+        <div class="comment reply">
+            <div class="user-info">
+                <img src="/img/avt_2.jpg" alt="User Avatar" />
+                <span class="username">Nguyễn Dũng</span>
+            </div>
+            <p class="comment-text">Lần nào cũng thế =)</p>
+            <div class="comment-actions">
+                <span class="time">22 giờ</span>
+                <span class="action">Thích</span>
+                <span class="separator">·</span>
+                <span class="action">Phản hồi</span>
+            </div>
+        </div>
+
+        <div class="user-info">
+            <img src="/img/avt_3.jpg" alt="User Avatar" />
+            <span class="username">Phan Tuyên</span>
+            </div>
+            <p class="comment-text">
+            Tháo ra lắp FE xong lắp lại xong máy éo chạy nữa thì hề vl 🐥
+            </p>
+            <div class="comment-actions">
+            <span class="time">2 ngày</span>
+            <span class="action">Thích</span>
+            <span class="separator">·</span>
+            <span class="action">Phản hồi</span>
+        </div> -->
+    </div>
+    <!-- Phần nhập bình luận -->
+    <div class="comment-input">
+      <img src="{{avatarSelf}}" alt="Your Avatar" />
+      <textarea [(ngModel)]="content" class="editable-comment" type="text" placeholder="Viết bình luận..."></textarea>
+      <button (click)="createComment()">Gửi</button>
+    </div>
+  </div>

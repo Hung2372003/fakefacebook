@@ -1,0 +1,53 @@
+<Section id="contact-user">
+    <ul class="seach-contact-user">
+        <p class="letter-seach">Người liên hệ</p>
+        <div>
+            <!-- <i class="fa-solid fa-magnifying-glass tooltip-container">
+                <span class="tooltip-text">Tìm kiếm</span>
+            </i> -->
+            <i (click)="OpenWindowSelectUser()" class="fa-regular fa-users-medical tooltip-container">
+                <span class="tooltip-text">Tạo nhóm chát</span>
+            </i>
+            <!-- <i class="fa-solid fa-ellipsis"></i> -->
+        </div>
+    </ul>
+    <ul >
+        <ng-container *ngFor="let item of ListFriends" >
+            <li id="fb-{{item.userCode.toString()}}" (click)="openchat(null,[{userCode:item.userCode,name:item.name, avatar:item.path }],item.path,item.name)"  class="list-user" >
+                <div class="button-contact-user">
+                    <img  src="{{item.path}}" alt="">
+                    <span *ngFor=" let UserCodeOnline of ListUserOnline ">
+                    <span *ngIf="UserCodeOnline == item.userCode.toString() " class="online-dot"></span>
+                    </span>
+                </div>
+                <p>{{item.name}}</p> 
+            </li>
+        </ng-container>
+    </ul>
+    <ul>
+        <div class="end-of-content"></div>
+    </ul>
+    <ul>
+        <li><p class="p-group-chat">Nhóm chat</p></li>
+        <ng-container *ngFor="let item of ListGroupChats" >
+            <li (click)="openchat(item.groupChatId,item.listMember,item.groupAvatar,item.groupName)" id="fb-{{item.groupChatId.toString()}}"  class="list-user" >
+                <div class="button-contact-user">
+                    <img  src="{{item.groupAvatar}}" alt="">
+                    <span>
+                            <span *ngIf="CheckOnline(item.listMember)" class="online-dot"></span>                     
+                    </span>
+                </div>
+                <p>{{item.groupName}}</p> 
+            </li>
+        </ng-container>
+        <li (click)="OpenWindowSelectUser()" class="list-user" >
+           
+            <div class="button-contact-user">
+                <div class="create-group-button"><i class="fa-solid fa-plus"></i></div>
+            </div>
+            <p>Tạo nhóm chat</p> 
+        </li>
+    </ul>
+
+</Section>
+<app-selecter-user-group-chat [ngStyle]="{'display': displayWindowAddGroup}"></app-selecter-user-group-chat>

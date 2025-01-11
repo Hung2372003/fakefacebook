@@ -1,0 +1,25 @@
+<div class="profile-container">
+    <div class="profile-header">
+      <div class="profile-avatar">
+        <img src="{{PersionalInformation.avatar}}" alt="Avatar" />
+      </div>
+      <div class="profile-name">{{PersionalInformation.name}}</div>
+    </div>
+
+    <div class="separator"></div>
+
+    <div class="profile-actions">
+      <div (click)="openPersionalInformation()" class="action-item">
+        <div>
+            <i class="fa-solid fa-user"></i>
+        </div>
+        <p>Xem tất cả trang cá nhân</p>
+      </div>
+      <div (click)="Logout()" class="action-item">
+       <div>
+            <i class="fa-solid fa-right-from-bracket"></i>
+       </div>
+        <p>Đăng xuất</p>
+      </div>
+    </div>
+  </div>

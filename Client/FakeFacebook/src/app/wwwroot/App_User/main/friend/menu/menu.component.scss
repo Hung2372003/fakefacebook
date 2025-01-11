@@ -1,0 +1,81 @@
+.friend-menu {
+    background: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 15px;
+    height: 100%;
+}
+
+/* Header */
+.menu-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 7px;
+    padding-left: 10px;
+}
+
+.menu-header h2 {
+    font-size: 1.5rem;
+    color: #050505;
+    font-weight: bold;
+    
+}
+
+.settings-icon {
+    font-size: 1.2rem;
+    color: #606770;
+    cursor: pointer;
+    transition: color 0.3s;
+}
+
+.settings-icon:hover {
+    color: #1877f2;
+}
+
+/* Menu List */
+.friend-menu ul {
+    list-style: none;
+    padding: 0;
+}
+
+.friend-menu li {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 17px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    padding-left: 10px;
+}
+
+.friend-menu li i {
+    font-size: 1.2rem;
+    color: #555;
+}
+
+.friend-menu li span {
+    flex: 1;
+    margin-left: 10px;
+    font-size: 1rem;
+    color: #050505;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+    font-weight: 500;
+}
+
+.friend-menu li:hover,
+.friend-menu li.active {
+    background-color: #e4e6eb;
+}
+
+.friend-menu li.active i {
+    color: #1877f2;
+}
+
+
+.active{
+    background-color: #e4e6eb;
+    color: #1877f2;
+    span{
+        color: #1877f2 !important; ;
+    }
+}

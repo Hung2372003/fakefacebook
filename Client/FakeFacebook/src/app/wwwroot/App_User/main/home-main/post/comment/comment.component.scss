@@ -1,0 +1,241 @@
+.comment-section {
+    width: 100vh;
+    background-color: #fff;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    max-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .header{
+    flex: 0 0 auto;
+  }
+  /* Phần bài viết */
+  .post-header {
+    flex: 0 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    margin-bottom: 15px;
+  }
+  
+  .post-title {
+    flex: 0 0 auto;
+    font-size: 18px;
+    font-weight: bold;
+    color: #333;
+  }
+  
+  .close-button {
+    position: absolute;
+    right: 10px;
+    top: 0;
+    background: none;
+    border: none;
+    font-size: 24px;
+    color: #888;
+    cursor: pointer;
+  }
+  
+  .close-button:hover {
+    color: #333;
+  }
+  
+  /* Dropdown lựa chọn */
+  .filter-section {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    margin-bottom: 15px;
+    font-size: 14px;
+    color: #555;
+  }
+  
+  .filter-section label {
+    margin-right: 10px;
+    font-weight: bold;
+  }
+  
+  .filter-section select {
+    padding: 5px 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 14px;
+    color: #333;
+    cursor: pointer;
+  }
+  
+  .filter-section select:focus {
+    outline: none;
+    border-color: #007bff;
+    box-shadow: 0 0 4px rgba(0, 123, 255, 0.3);
+  }
+  
+  /* Comment Styles */
+  .comment {
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 15px;
+    align-items: flex-start;
+  }
+  
+  .user-info {
+    display: flex;
+    align-items: center;
+    margin-bottom: 5px;
+    margin-top: 3px;
+  }
+  
+  .user-info img {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    margin-right: 10px;
+  }
+  
+  .username {
+    font-weight: bold;
+    color: #444;
+    font-family: Roboto, "Helvetica Neue", sans-serif !important;
+    font-size: 14px;
+
+  }
+  
+  .comment-text {
+    margin: 0;
+    font-size: 13px;
+    color: #333;
+    line-height: 1.4;
+  }
+  
+  .time {
+    font-size: 12px;
+    color: #888;
+  }
+  
+  .reply {
+    margin-left: 20px;
+    border-left: 2px solid #ddd;
+    padding-left: 10px;
+  }
+  
+  /* Phần viết bình luận */
+  .comment-input {
+    flex: 0 0 auto;
+    display: flex;
+    align-items: center;
+    margin-top: 20px;
+    padding: 10px;
+    border-top: 1px solid #ddd;
+  }
+  
+  .comment-input img {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    margin-right: 10px;
+  }
+  
+  .editable-comment {
+    flex: 1;
+    min-height: 40px;
+    padding: 8px 12px;
+    border: 1px solid #ccc;
+    border-radius: 20px;
+    font-size: 14px;
+    outline: none;
+    position: relative;
+    overflow-y: auto; /* Thêm thanh cuộn dọc nếu vượt quá chiều cao tối đa */
+    word-wrap: break-word; /* Đảm bảo các từ dài được ngắt dòng */
+    white-space: pre-wrap; /* Giữ định dạng dòng và cho phép xuống dòng */
+    resize: none; /* Ngăn người dùng thay đổi kích thước */
+  }
+  
+  .editable-comment::before {
+    content: attr(placeholder); /* Hiển thị nội dung placeholder */
+    color: #aaa;
+    position: absolute;
+    left: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    pointer-events: none;
+  }
+  
+  .editable-comment:focus::before {
+    color: #bbb; /* Đổi màu khi focus */
+  }
+  
+  .editable-comment:not(:empty)::before {
+    content: ""; /* Ẩn placeholder khi có nội dung */
+  }
+  
+  .comment-input button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 20px;
+    margin-left: 10px;
+    cursor: pointer;
+    font-size: 14px;
+  }
+  
+  .comment-input button:hover {
+    background-color: #0056b3;
+  }
+  
+  /* Container cho các hành động */
+  .comment-actions {
+    font-size: 12px; /* Cỡ chữ giống phần thời gian */
+    color: #65676b; /* Màu chữ mặc định */
+    display: flex;
+    align-items: center;
+    gap: 5px; /* Khoảng cách giữa các mục */
+    padding-left:12px ;
+  }
+  
+  span, p{
+    font-family: Roboto, "Helvetica Neue", sans-serif !important;
+  }
+  .like{
+    font-weight: 500;
+  }
+  /* Mục Thích và Phản hồi */
+  .comment-actions .action {
+    cursor: pointer; /* Biến con trỏ thành bàn tay */
+    transition: color 0.3s ease; /* Hiệu ứng mượt khi hover */
+  }
+  
+  .comment-actions .action:hover {
+    color: #1877f2; /* Đổi sang màu xanh khi hover */
+    text-decoration: underline; /* Gạch chân khi hover */
+  }
+  
+  /* Dấu phân cách (·) */
+  .comment-actions .separator {
+    color: #b0b3b8; /* Màu mờ cho dấu phân cách */
+    font-weight: normal;
+  }
+  
+  /* Thời gian hiển thị */
+  .comment-actions .time {
+    color: #65676b; /* Màu giống với màu mặc định */
+    font-size: 12px; /* Cỡ chữ */
+    font-weight: normal;
+  }
+ .list-comment{
+    flex: 1 1 auto;
+    overflow-y: auto;
+
+ }
+ p{
+    margin: 0;
+ }
+ .text-container{
+    background: #e4e4e494;
+    border-radius: 23px;
+    padding: 8px 12px;
+ }

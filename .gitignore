@@ -1,0 +1,10 @@
+*.exe
+*.asar
+
+# Ignore node_modules
+Client/FakeFacebook/node_modules/
+Client/FakeFacebook/dist_electron/
+
+# Ignore build output
+Server/FakeFacebook/FakeFacebook/bin/
+Server/FakeFacebook/FakeFacebook/obj/

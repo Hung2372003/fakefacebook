@@ -1,0 +1,131 @@
+.friend-requests-container {
+    width: 100%;
+    border-radius: 8px;
+    padding: 20px;
+}
+
+.notlist{
+    position: absolute;
+    top: 50%;
+    right: 50%;
+    transform: translate(50%, 50%);
+}
+/* Header */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header h2 {
+    color: #050505;
+    margin: 0;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.header .view-all {
+    text-decoration: none;
+    color: #1877f2;
+    font-size: 1rem;
+}
+
+.header .view-all:hover {
+    text-decoration: underline;
+}
+
+/* Friend Requests Grid */
+.friend-requests {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 0fr));
+    gap: 15px;
+    justify-items: start;
+}
+
+/* Friend Card */
+.friend-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+    padding: 10px;
+    text-align: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    &:hover{ 
+            transform: translateY(-3px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
+    }
+}
+
+.friend-card img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    border-bottom: 1px solid #ddd;
+    cursor: pointer;
+}
+
+.friend-card .info {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.friend-card .info h3 {
+    font-size: 1rem;
+    margin: 10px 0 5px;
+    color: #050505;
+    font-weight: 500;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+.friend-card .info p {
+    font-size: 0.9rem;
+    color: #606770;
+    margin-bottom: 10px;
+    min-height: 18px; /* Đảm bảo chỗ "bạn chung" cố định chiều cao */
+}
+
+/* Buttons */
+.friend-card button {
+    width: 100%;
+    padding: 8px;
+    font-size: 0.9rem;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    margin-bottom: 5px;
+    transition: background-color 0.3s;
+    font-weight: 500;
+    font-family:  Roboto, "Helvetica Neue", sans-serif;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    &:hover{ 
+        transform: translateY(-3px);
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
+}
+}
+
+.friend-card .confirm-btn {
+    background-color: #1877f2;
+    color: #fff;
+}
+
+.friend-card .confirm-btn:hover {
+    background-color: #145dbf;
+}
+
+.friend-card .delete-btn {
+    background-color: #e4e6eb;
+    color: #050505;
+}
+
+.friend-card .delete-btn:hover {
+    background-color: #d1d1d1;
+}

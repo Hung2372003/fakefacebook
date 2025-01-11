@@ -1,0 +1,22 @@
+:host ::ng-deep app-friend-request {
+    width: 100%;
+    overflow: auto;
+    position: relative;
+  }
+  :host ::ng-deep app-list-friend {
+    width: 100%;
+    overflow: auto;
+    padding: 7px;
+    position: relative;
+  }
+  :host ::ng-deep app-list-search-friend {
+    width: 100%;
+    overflow: auto;
+    padding: 7px;
+    position: relative;
+  }
+  app-menu{
+    width: 35%;
+     height: 100%;
+  }
+  

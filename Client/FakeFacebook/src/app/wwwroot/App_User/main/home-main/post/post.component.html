@@ -1,0 +1,127 @@
+<app-comment [ngStyle]="{'display': displayPostComment}"></app-comment>
+<app-create-post  [ngStyle]="{'display': displayCreatePost}"></app-create-post>
+<section (click)="openCreatePost(PersionalInformation.avatar,PersionalInformation.name)" class="add-post">
+    <div class="post-box">
+        <div class="profile">
+          <img src="{{PersionalInformation.avatar}}" alt="Avatar" class="avatar" />
+          <span class="status-input"> {{PersionalInformation.name}} ơi, bạn đang nghĩ gì thế? </span>
+        </div>
+        <div class="options">
+          <!-- <div class="option live-video">
+            <i class="fa-solid fa-video-plus icon-post" style="color: #ff5656;"></i>
+            <span>Video trực tiếp</span>
+          </div> -->
+          <div class="option photos-video">
+            <i class="fa-solid fa-rectangle-history-circle-plus icon-post" style="color: #189318ad;"></i>
+            <span>Ảnh</span>
+          </div>
+          <!-- <div class="option films">
+            <i class="fa-solid fa-tv-retro icon-post" style="color: #ff6767;"></i>
+            <span>Thước phim</span>
+          </div> -->
+        </div>
+      </div>
+</section>
+<section *ngFor="let item of listPost">
+    <ul class="user-post">
+        <li class="column-left">
+          <img class="avatar-post" src="{{item.avatar}}" alt="">
+          <div class="name-user-and-post">
+            <div class="information-user-post">
+                <p class="user-name-post">{{item.name}}</p>
+                <!-- <i class="fa-sharp-duotone fa-solid fa-circle-dot dot-post"></i>
+                <p class="status-post">Theo dõi</p> -->
+            </div>
+            <div class="time-slot">
+                <p>{{setDate(item.createdTime)}}</p>
+                <i class="fa-sharp-duotone fa-solid fa-circle-dot dot-post"></i>
+                <i class="fa-solid fa-earth-americas"></i>
+            </div>            
+          </div>
+        </li>
+        <li class="operation-setting">         
+            <i class="fa-solid fa-ellipsis"></i>
+            <i class="fa-regular fa-xmark"></i>
+        </li>     
+    </ul>
+    <ul class="content">
+        <p>{{item.content}}</p>
+    </ul>
+    <ul class="file-post-container">
+            <ng-container *ngIf="item.listFile.length==4 " >
+                <li  class="top-image-four">
+                        <img (click)="openViewFile(item.listFile[0].id, item.id, item.listFile)" class="file-post" src="{{item.listFile[0].path}}" alt="">
+                </li>
+                <li class="bottom-image-four">
+                    <ng-container  *ngFor="let file of item.listFile;let i = index">
+                        <img (click)="openViewFile(file.id, item.id, item.listFile)"  *ngIf="i>0" class="file-post" src="{{file.path}}" alt="">
+                    </ng-container>         
+                </li>
+            </ng-container>  
+            <ng-container *ngIf="item.listFile.length<4 " >
+                <li class="image-third">
+                    <ng-container  *ngFor="let file of item.listFile;let i = index">
+                        <img (click)="openViewFile(file.id, item.id, item.listFile)" class="file-post" src="{{file.path}}" alt="">
+                    </ng-container>         
+                </li>
+            </ng-container>  
+            <ng-container *ngIf="item.listFile.length>4 " >
+                <li  class="top-image-four">
+                        <img (click)="openViewFile(item.listFile[0].id, item.id, item.listFile)" class="file-post" src="{{item.listFile[0].path}}" alt="">
+                        <img (click)="openViewFile(item.listFile[1].id,item.id,item.listFile)" class="file-post" src="{{item.listFile[1].path}}" alt="">
+                </li>
+                <li class="bottom-image-four" style="position: relative;">
+                    <img (click)="openViewFile(item.listFile[2].id, item.id, item.listFile)" class="file-post" src="{{item.listFile[2].path}}" alt="">
+                    <img (click)="openViewFile(item.listFile[3].id, item.id, item.listFile)" class="file-post" src="{{item.listFile[3].path}}" alt="">
+                    <img (click)="openViewFile(item.listFile[4].id, item.id, item.listFile)" class="file-post" src="{{item.listFile[4].path}}" alt="">
+                    <div *ngIf="item.listFile.length>5" (click)="openViewFile(item.listFile[4].id, item.id, item.listFile)" class="views-file"><p>+ {{item.listFile.length-5}}</p></div>      
+                </li>
+            </ng-container>  
+    </ul>
+    <ul class="information-feeling">
+        <li>
+            <ul>
+                <li class="show-feeling-post">
+                    <div class="iconn">
+                        <i style="color: white;" class="fa-solid fa-thumbs-up"></i>   
+                    </div>
+                   <!-- <div class="iconn" style="background: #ff4949;">
+                    <i style="color: white;" class="fa-solid fa-heart"></i>
+                   </div> -->
+                    
+                </li>
+                <li>
+                    <p>{{item.likeNumber}}</p>
+                </li>
+            </ul> 
+        </li>
+        <li (click)="openComment(item.id,item.name)">
+            <p>{{item.commentNumber}} Bình luận</p>
+            <!-- <p>3 Lượt chia sẻ</p> -->
+        </li>
+    </ul>
+    <ul class="operation-article">
+        <li *ngIf="item.like == true;else notlike" (click)="setLikeStatus(item.id)">   
+            <i style="color: rgb(28, 87, 248);" class="fa-solid fa-thumbs-up"></i>
+            <p style="color: rgb(28, 87, 248);">Thích</p>
+        </li>
+        <ng-template #notlike>
+            <li (click)="setLikeStatus(item.id)">
+                <i class="fa-light fa-thumbs-up"></i>
+                <p >Thích</p>
+            </li>
+        </ng-template>     
+        <li (click)="openComment(item.id,item.name)">
+            <div >
+                <i class="fa-light fa-comment"></i>     
+                <p>Bình luận</p> 
+            </div>      
+        </li>      
+        <!-- <li>
+            <a href="">
+                <i class="fa-light fa-share"></i>
+                <p>Chia sẻ</p>
+            </a>
+        </li>      -->
+    </ul>
+</section>

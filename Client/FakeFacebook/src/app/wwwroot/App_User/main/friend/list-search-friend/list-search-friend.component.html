@@ -1,0 +1,36 @@
+
+<div class="user-list">
+    <div class="header">
+      <div>
+        <h2>Mọi người</h2>
+      </div>
+      <div class="input-container">
+        <label class="icon" for="seachpeople"><i class="fa-solid fa-magnifying-glass"></i></label>
+        <input [(ngModel)]="input" autocomplete="off" (input)="changeInput($event)" id="seachpeople" type="text" placeholder="Nhập tên hoặc ID....">
+      </div>
+    </div>
+   
+    <ng-container *ngFor="let item of listSearchUser">
+      <div class="user-item">
+        <div (click)="OpenInfor(item.id)" class="avatar">
+          <img src="{{item.avatar}}" alt="Avatar">
+        </div>
+        <div class="user-info">
+          <p class="name">{{item.name}}</p>
+          
+          <p *ngIf="item.mutualFriend>0" class="mutual-friends">{{item.mutualFriend}} bạn chung</p>
+        </div>
+        <ng-container *ngIf="item.status=='ALREADY_FRIENDS'">
+          <button (click)="openChat(null,[{userCode:item.id,name:item.name,avatar:item.avatar}],item.avatar,item.name)"  class="action-btn">Nhắn tin</button>
+        </ng-container>
+        <ng-container *ngIf="item.status=='WAITING_FRIENDED'">
+          <button (click)="unRequestFriend(item.id)" class="action-btn">Hủy lời mời</button>                               
+        </ng-container>
+        <ng-container  *ngIf="item.status==null">
+          <button (click)="sendRequestFriend(item.id)" class="action-btn">Thêm bạn bè</button>                               
+        </ng-container>
+      </div>
+    </ng-container>
+    <!-- <button class="view-all-btn">Xem tất cả</button> -->
+  </div>
+  

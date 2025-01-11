@@ -1,0 +1,257 @@
+@use 'sass:color';
+header {
+  background: white;
+  display: flex;
+  padding: 5px 13px 5px 13px;
+  margin: 0;
+  box-shadow: 1px 1px 5px rgba(113, 113, 113, 0.5);
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  height: 56px;
+}
+
+ul{
+    display: flex;
+    list-style-type: none;
+    margin: 0;
+    gap: 10px;
+    padding: 0;
+}
+
+$border-color: #ccc;
+$focus-border-color: #007bff;
+$input-padding: 8px;
+$input-font-size: 16px;
+.header-icon-page{
+    position: absolute;
+    left: 13px;
+    li{
+      cursor: pointer;
+      img{
+        max-width: 40px;
+      }
+      input {
+        width:240px;
+        height: 40px;
+        border: none;
+        border-radius: 20px;
+        padding: $input-padding;
+        font-size: $input-font-size;
+        width: 100%;
+        box-sizing: border-box;
+        background: #F0F2F5;
+        padding-left: 40px;
+        
+        @media (max-width: 900px) {
+          display: none;
+        }
+        &:focus {
+          border-color: $focus-border-color;
+          outline: none;
+          box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.25);
+        }
+
+        &::placeholder {
+          color: #616161;
+        }
+        &:hover {
+          
+          // border-color: darken($focus-border-color, 10%);
+          border-color: color.adjust($focus-border-color, $lightness: -10%);
+        }
+
+        &:active {
+          // background-color: lighten($focus-border-color, 40%);
+          // background-color: adjust($focus-border-color, $lightness: 40%);
+          background-color: color.adjust($focus-border-color, $lightness: 40%);
+        }
+
+
+       }
+    }
+}
+
+label{
+  @media (max-width: 900px) {
+    border-radius: 50%;
+    background: #F0F2F5;
+    width: 30px;
+    height: 30px;
+    align-items: center;
+    border-radius: 50%;
+    background: #F0F2F5;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: -13px
+  }
+}
+
+.seach-app{
+    position: relative;
+    display: flex;
+    align-items: center;
+    label{
+        position: absolute;
+        left: 10px;
+        color: #616161;
+    }
+}
+
+.header-bw{
+  gap: 0;
+  width: 40%;
+  height: 100%;
+  
+  @media (max-width: 700px) {
+    display: none;
+  }
+  li{
+    font-size: 23px;
+    cursor: pointer;
+    height: 100%;
+    width: 100%;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;  
+    &:hover{
+      background:#F0F2F5 ;
+      border-radius: 7px;
+      
+    }
+    &:active{
+      color: #0866ff;
+      border-bottom: 3.5px solid;
+      border-radius: 7px 7px 0px 0px;
+    }
+  }
+  
+}
+   
+.header-id{
+  position: absolute;
+  right: 17px;
+
+  li {
+    background: #F0F2F5;
+    font-size: 20px;
+    cursor: pointer;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &:hover{
+      background:#dbdbdc;;
+    }
+    &:active{
+      color: #0866ff;
+      background: #EBF5FF;
+    }
+
+  }
+  .avatar{
+    @media (max-width: 350px) {
+      display: none;
+    }
+  }
+  
+}
+
+title{
+  background: black;
+}
+.active{
+  color: #0866ff;
+  border-bottom: 3.5px solid;
+  border-radius: 7px 7px 0px 0px;
+  &:hover{
+    border-radius: 7px 7px 0px 0px !important;
+  }
+}
+.active-setting{
+  color: #0866ff;
+  background: #EBF5FF !important;
+}
+
+  .tooltip-container .tooltip-text {
+    
+    bottom: -120%; /* Định vị phía trên đối tượng */
+    right:50%;
+    left: 50%;
+   transform: translate(-50%,-50%);
+ 
+    p{
+
+    }
+  }
+
+.avatar{
+    width: 40px;
+    aspect-ratio: 1 / 1;
+    border-radius: 50%;
+    border: 1px solid #c4c4c4;
+    &:hover{
+      background: #767676;
+    }
+}
+
+app-chat-history{
+  position: absolute;
+  min-width: 27%;
+  max-width: 90%;
+  top: 70px;
+  right:  25px;
+}
+app-setting-accout{
+  position: absolute;
+  width: 400px;
+  top: 70px;
+  right:  25px;
+}
+.setting-accout{
+  position: absolute;
+    bottom: -1px;
+    right: -4px;
+    background: #cccccc;
+    height: 13px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    aspect-ratio: 1 / 1;
+    font-size: 13px;
+    border-radius: 50%;
+    color: black;
+    border: 1px solid white;
+    box-shadow: 0px 0px 1px 2px #ededed;
+   
+}
+
+app-persional-information{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  background-color: #0000008a;
+  animation: fadeIn 0.5s ease-in-out;
+  width: 100%;
+  position: fixed;
+  top: 0px;
+}
+@keyframes fadeIn {
+  0%{
+    background: rgba(255, 255, 255, 0);
+  }
+  100%{
+    background:#0000008a;
+  }
+}
+
+
+

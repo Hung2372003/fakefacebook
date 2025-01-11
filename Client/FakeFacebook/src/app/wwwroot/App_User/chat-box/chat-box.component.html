@@ -1,0 +1,352 @@
+
+<main class="listFrame">
+    <ul #avatar>
+        <li 
+             *ngFor="let item of ListFrame"
+             class="avatar-frame tooltip-container"
+             [attr.data-avatar-groupchatid]="item.GroupChatId"
+             [id]="'avatar-'+item.GroupChatId">
+             <span class="tooltip-text">{{item.Name}}</span>
+            <img (click)="showFrame(item.GroupChatId)" src="{{item.Avatar}}" alt="" (mouseenter)="onHover(true)" (mouseleave)="onHover(false)">
+            <span>
+                    <span *ngIf="checkOnline(ListUserOnline,item.UserChat)"  class="online-dot"></span>
+
+            </span>
+            <i (click)="closeFrame(item.GroupChatId)" class="fa-solid fa-xmark icon-close-avatar" [ngClass]="{'show-close-chat-box': isHovered}"></i>
+        </li>
+    </ul>
+</main>
+
+<main #frameChat>
+   <div *ngFor="let item of ListFrame"
+   (click)="selecterFrame(item.GroupChatId)"
+   class="chat-box" 
+   [attr.data-frame-groupchatid]="item.GroupChatId"
+   [id]="'frame-'+item.GroupChatId">   
+        <section class="header-box">
+            <ul class="header-avatarsetting" >
+                <li class="avatar tooltip-container">
+                    <span class="tooltip-text">{{item.Name}}</span>
+                    <img src="{{item.Avatar}}" alt="">
+                    <span >                
+                        <span *ngIf="checkOnline(ListUserOnline,item.UserChat)"  class="online-dot"></span>
+                    </span>                  
+                </li>
+                <li class="status-setting tooltip-container">
+                    <span class="tooltip-text">Cài đặt chat</span>
+                    <div class="status" >
+                        <p class="name-user">{{item.Name}}</p>
+                        <div>
+                                <p *ngIf="checkOnline(ListUserOnline,item.UserChat)" class="status-work">Đang hoạt động</p>
+                        </div> 
+                    </div>
+                    <div  class="setting">
+                        <i class="fa-solid fa-caret-down"></i>
+                    </div>
+                </li>
+            </ul>
+            <ul class="action">            
+                <li class="tooltip-container">
+                    <span class="tooltip-text">Bắt đầu hội thoại</span>
+                    <i  class="fa-solid fa-phone"></i>
+                </li>
+                <li class="tooltip-container">
+                    <span class="tooltip-text">Bắt đầu gọi video</span>
+                    <i  class="fa-solid fa-video"></i>
+                </li>
+                <li class="tooltip-container" (click)="hideFrame(item.GroupChatId)">
+                    <span class="tooltip-text">Thu nhỏ đoạn chat</span>
+                    <i class="fa-solid fa-minus"></i>
+                </li>
+                <li class="tooltip-container" (click)="closeFrame(item.GroupChatId)">
+                    <span class="tooltip-text">Đóng đoạn chat</span>
+                    <i class="fa-regular fa-xmark"></i>
+                </li>
+            </ul>
+        </section>
+
+        <section [id]="'main-box-'+item.GroupChatId" class="main-box scroll-container">        
+            <ul>
+                <ng-container *ngIf="this.listMessages.length==0 || !this.listMessages">
+                    <li class="not-message">
+                        <div>
+                            <div><img src="{{item.Avatar}}" alt=""></div>
+                            <p>{{item.Name}}</p>
+                        </div>
+                    </li>
+
+                </ng-container>
+                <ng-container *ngFor="let ListMess of this.listMessages;let i = index">
+                    <ng-container *ngIf="ListMess.UserCode.toString() == this.selfCode.toString()"  >
+                        <li *ngIf="item.GroupChatId == ListMess.GroupChatId" class="message message-self">
+                          
+                            <ul *ngIf="this.setDateMessage(ListMess.CreatedTime,this.listMessages[i-1]?.CreatedTime)=='addDay' || i==0; else elseSetDateMessage" class="time-display">
+                                    <p>{{ ListMess.CreatedTime | date:'dd/MM/yyyy HH:mm' }}</p>                         
+                            </ul>    
+                            <ng-template #elseSetDateMessage >
+                                    <ul *ngIf="this.setDateMessage(ListMess.CreatedTime,this.listMessages[i-1]?.CreatedTime) == true || i==0" class="time-display">
+                                        <p>{{ ListMess.CreatedTime | date:'HH:mm' }}</p>  
+                                    </ul>                                 
+                            </ng-template>
+
+                            <ul style="justify-content: flex-end;" class="content-avatar-icon ">
+                                <li class="file-content">  
+                                    <div *ngIf="ListMess.ListFile.length > 0" class="files self">
+                                            <div  class="file-views-frame-chat">
+                                                <div *ngFor="let listfile of ListMess.ListFile">
+                                                    <img (click)="openViewFile(listfile.id,item.GroupChatId)" src="{{listfile.path}}" alt="">
+                                                </div>                             
+                                            </div>  
+                                            <ul class="setup-contents">
+                                                <li class="tooltip-container">
+                                                    <span class="tooltip-text">Bày tỏ cảm xúc</span>
+                                                    <i class="fa-solid fa-face-smile"></i>
+                                                </li>
+                                                <li class="tooltip-container">
+                                                    <span class="tooltip-text">Trả lời</span>
+                                                    <i class="fa-solid fa-share"></i>
+                                                </li>
+                                                <li class="tooltip-container">
+                                                    <span class="tooltip-text">Xem thêm</span>
+                                                    <i class="fa-solid fa-ellipsis-vertical"></i>
+                                                </li>     
+                                            </ul>                                                     
+                                    </div>
+                                    <div *ngIf="ListMess.Contents!='' && ListMess.Contents!=null" class="list-contents self">  
+                                        <ng-container>
+                                            <p *ngIf="
+                                             ( ListMess.UserCode != this.listMessages[i+1]?.UserCode 
+                                             || this.setDateMessage(this.listMessages[i+1]?.CreatedTime,ListMess.CreatedTime)) 
+                                             &&( this.setDateMessage(this.listMessages[i-1]?.CreatedTime,ListMess.CreatedTime)
+                                                || ListMess.UserCode != this.listMessages[i-1]?.UserCode )
+                                             ;else elseContentStart" class="contents contents-self">{{ListMess.Contents}}</p>
+                                        </ng-container> 
+                                        <ng-template #elseContentStart>
+                                            <p
+                                            *ngIf="
+                                            ( ListMess.UserCode != this.listMessages[i-1]?.UserCode 
+                                                || this.setDateMessage(ListMess.CreatedTime,this.listMessages[i-1]?.CreatedTime))
+                                            &&( ListMess.UserCode == this.listMessages[i+1]?.UserCode
+                                                || !this.setDateMessage(ListMess.CreatedTime,this.listMessages[i-1]?.CreatedTime))
+                                            ;else elseContentEnd"
+                                            class="contents contents-self start-self">{{ListMess.Contents}}</p>
+                                        </ng-template>                                    
+                                        <ng-template #elseContentEnd >
+                                            <p *ngIf="
+                                                 ( ListMess.UserCode != this.listMessages[i+1]?.UserCode
+                                                    || this.setDateMessage(this.listMessages[i+1]?.CreatedTime,ListMess.CreatedTime)) 
+                                                && ( ListMess.UserCode == this.listMessages[i-1]?.UserCode
+                                                    || !this.setDateMessage(this.listMessages[i-1]?.CreatedTime,ListMess.CreatedTime))
+                                                ;else elseContentStartEnd" class="contents contents-self end-self">{{ListMess.Contents}}</p>
+                                        </ng-template>
+                                       
+                                        <ng-template #elseContentStartEnd>
+                                            <p class="contents contents-self start-self end-self tooltip-container">{{ListMess.Contents}}
+                                                <span class="tooltip-text">Xem thêm</span>
+                                            </p>
+                                        </ng-template>
+
+                                        <ul class="setup-contents">
+                                            <li class="tooltip-container">
+                                                <span class="tooltip-text">Bày tỏ cảm xúc</span>
+                                                <i class="fa-solid fa-face-smile"></i>
+                                            </li>
+                                            <li class="tooltip-container">
+                                                <span class="tooltip-text">Trả lời</span>
+                                                <i class="fa-solid fa-share"></i>
+                                            </li>
+                                            <li class="tooltip-container">
+                                                <span class="tooltip-text">Xem thêm</span>
+                                                <i class="fa-solid fa-ellipsis-vertical"></i>
+                                            </li>       
+                                        </ul>
+                                    </div>                                          
+                                </li>
+                            </ul>
+                        </li>
+                        <div *ngIf="ListMess.UserCode != this.listMessages[i+1]?.UserCode"  style="margin-bottom: 10px;"></div>
+                    </ng-container>                    
+                     <ng-container *ngIf="ListMess.UserCode.toString() != this.selfCode.toString()"  >
+                        <li *ngIf="item.GroupChatId == ListMess.GroupChatId" class="message">
+                            <ul *ngIf="this.setDateMessage(ListMess.CreatedTime,this.listMessages[i-1]?.CreatedTime)=='addDay' || i==0;else elseSetDateMessage " class="time-display">
+                                <!-- <p>6 ngày trước</p> -->
+                                    <p>{{ ListMess.CreatedTime | date:'dd/MM/yyyy HH:mm' }}</p>
+                            </ul> 
+                            <ng-template #elseSetDateMessage  >
+                                <ul  *ngIf="this.setDateMessage(ListMess.CreatedTime,this.listMessages[i-1]?.CreatedTime) == true || i==0"  class="time-display">
+                                    <p>{{ ListMess.CreatedTime | date:'HH:mm' }}</p>  
+                                </ul>                                 
+                            </ng-template>
+                            <ul class="content-avatar-icon">
+                                <li class="avatar-receiver tooltip-container">
+                                    <ng-container *ngIf="
+                                        ((ListMess.UserCode != this.listMessages[i-1]?.UserCode
+                                        && ListMess.UserCode != this.listMessages[i+1]?.UserCode)
+                                        || (ListMess.UserCode != this.listMessages[i+1]?.UserCode
+                                            && ListMess.UserCode == this.listMessages[i-1]?.UserCode
+                                            || this.setDateMessage(ListMess.CreatedTime,this.listMessages[i+1]?.CreatedTime)
+                                        ))
+                                        || (this.setDateMessage(ListMess.CreatedTime,this.listMessages[i-1]?.CreatedTime)
+                                            &&this.setDateMessage(ListMess.CreatedTime,this.listMessages[i+1]?.CreatedTime))" 
+                                    >
+                                        <span class="tooltip-text">{{checkName(ListMess.UserCode)}}</span>
+                                        <img  class="avatar-icon" src="{{checkAvatar(ListMess.UserCode)}}" alt="">  
+                                    </ng-container>
+                                                                                               
+                                </li>
+                                <li class="file-content" style="max-width: 90%;">
+                                    <ng-container *ngIf="ListMess.ListFile.length>0" >
+                                        <div class="files ">                                        
+                                                <div class="file-views-frame-chat">
+                                                    <ng-container *ngFor="let listfile of ListMess.ListFile" >
+                                                        <div (click)="openViewFile(listfile.id,item.GroupChatId)">
+                                                            <img src="{{listfile.path}}" alt="">  
+                                                        </div>                                                     
+                                                    </ng-container>
+                                                                                                                        
+                                                </div>                                                                                           
+                                                <ul class="setup-contents">
+                                                    <li class="tooltip-container">
+                                                        <span class="tooltip-text">Bày tỏ cảm xúc</span>
+                                                        <i class="fa-solid fa-face-smile"></i>
+                                                    </li>
+                                                    <li class="tooltip-container">
+                                                        <span class="tooltip-text">Trả lời</span>
+                                                        <i class="fa-solid fa-share"></i>
+                                                    </li>
+                                                    <li class="tooltip-container">
+                                                        <span class="tooltip-text">Xem thêm</span>
+                                                        <i class="fa-solid fa-ellipsis-vertical"></i>
+                                                    </li>     
+                                                </ul>                                                     
+                                        </div>
+                                     </ng-container>
+                                    <div *ngIf="ListMess.Contents!='' && ListMess.Contents!=null" class="list-contents">
+                                        <ng-container>
+                                            <p *ngIf="
+                                             ( ListMess.UserCode != this.listMessages[i-1]?.UserCode) 
+                                             &&( ListMess.UserCode != this.listMessages[i+1]?.UserCode) 
+                                             ||( this.setDateMessage(this.listMessages[i+1]?.CreatedTime,ListMess.CreatedTime)
+                                                && this.setDateMessage(this.listMessages[i-1]?.CreatedTime,ListMess.CreatedTime))
+                                             ;else elseContentStart" class="contents contents-not-self">{{ListMess.Contents}}</p>
+                                        </ng-container>
+                                        <ng-template #elseContentStart >
+                                            <p 
+                                             *ngIf="
+                                            (ListMess.UserCode != this.listMessages[i-1]?.UserCode 
+                                                || this.setDateMessage(ListMess.CreatedTime,this.listMessages[i-1]?.CreatedTime))
+                                            &&( ListMess.UserCode == this.listMessages[i+1]?.UserCode
+                                                || !this.setDateMessage(ListMess.CreatedTime,this.listMessages[i-1]?.CreatedTime))
+                                            ;else elseContentEnd" 
+                                            class="contents contents-not-self start">{{ListMess.Contents}}</p>
+                                        </ng-template>                                    
+                                        <ng-template #elseContentEnd >
+                                            <p *ngIf="
+                                                ( ListMess.UserCode != this.listMessages[i+1]?.UserCode
+                                                    || this.setDateMessage(this.listMessages[i+1]?.CreatedTime,ListMess.CreatedTime)) 
+                                                && ( ListMess.UserCode == this.listMessages[i-1]?.UserCode
+                                                    || !this.setDateMessage(this.listMessages[i-1]?.CreatedTime,ListMess.CreatedTime))
+                                                ;else elseContentStartEnd" class="contents contents-not-self end">{{ListMess.Contents}}</p>
+                                        </ng-template>
+                                      
+                                        <ng-template #elseContentStartEnd>
+                                            <p class="contents contents-not-self start end">{{ListMess.Contents}}</p>
+                                        </ng-template>
+                                        <ul class="setup-contents">
+                                            <li class="tooltip-container">
+                                                <span class="tooltip-text">Bày tỏ cảm xúc</span>
+                                                <i class="fa-solid fa-face-smile"></i>
+                                            </li>
+                                            <li class="tooltip-container">
+                                                <span class="tooltip-text">Trả lời</span>
+                                                <i class="fa-solid fa-share"></i>
+                                            </li>
+                                            <li class="tooltip-container">
+                                                <span class="tooltip-text">Xem thêm</span>
+                                                <i class="fa-solid fa-ellipsis-vertical"></i>
+                                            </li>      
+                                        </ul>
+                                    </div>                                          
+                                </li>
+                            </ul>
+                        </li>
+                        <div *ngIf="ListMess.UserCode!= this.listMessages[i+1]?.UserCode"  style="margin-bottom: 10px;"></div>
+                    </ng-container>
+                </ng-container>       
+            </ul>
+        </section>
+
+
+        <section class="send-mess">
+            <ul>
+                <div class="action-inputmess-div">
+                    <li id="action-inputmess" [id]="'action-inputmess-'+item.GroupChatId" class="action-inputmess" #actioninputmess >
+                        <div id="microphone" class="tooltip-container">
+                            <span class="tooltip-text">Gửi clip âm thanh</span>
+                            <i class="fa-solid fa-microphone"></i>                         
+                            <p>Gửi clip âm thanh</p>
+                            
+                        </div>
+                        <div class="tooltip-container"> 
+                            <span class="tooltip-text">Tệp đính kèm</span>
+                            <label class="addfile" [htmlFor]="'file-upload-'+item.GroupChatId">
+                                <i class="fa-regular fa-images"></i>
+                                 <p>Tệp đính kèm</p>
+                            </label>
+                            
+                        </div>
+                        <div class="tooltip-container">
+                            <span class="tooltip-text">Chọn nhãn gián</span>
+                            <i  class="fa-solid fa-person-breastfeeding"></i>
+                            <p>Chọn nhãn gián</p>
+                        </div>
+                        <div class="tooltip-container">
+                            <span class="tooltip-text">Chọn file GIF</span>
+                            <i class="fa-solid fa-gif"></i>
+                            <p>Chọn file GIF</p>
+                        </div>
+                        <span class="triangle"></span>                   
+                    </li>
+                    <li (click)="openInputMessList(item.GroupChatId)" #actioninputmesslist class="action-inputmess-list tooltip-container" [id]="'dislay-'+item.GroupChatId">
+                        <i class="fa-solid fa-circle-plus"></i>
+                        <span class="tooltip-text">Mở hành động khác</span>
+                    </li>
+                </div>              
+                
+                <li  class="input-mess">
+                    <div class="input-mess-value">
+                        <div [id]="'demofile-'+item.GroupChatId" style="display: none;" class="demo-file">
+                            <ul class="demo-fileupload">
+                                <li>
+                                    <div class="addfile-demo"><label [htmlFor]="'file-addupload-'+item.GroupChatId"><i class='fa-solid fa-file-circle-plus'></i></label></div>
+                                    <input style="display: none;" (change)="onAddFileSelected($event,item.GroupChatId)" type="file" [id]="'file-addupload-'+item.GroupChatId" name="files" multiple>   
+                                                                      
+                                </li>
+                                <li class="demo-file-colum-1" *ngFor="let file of this.ListFile">
+                                    <div><img class="img-demo" src="{{file.previewUrl}}" alt=""> </div>                                 
+                                    <div (click)="removeFile(file.id,item.GroupChatId)" class="remove-file-button"><i class="fa-solid fa-circle-xmark"></i></div>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="input-all">
+                            <input style="display: none;" (change)="onFileSelected($event,item.GroupChatId)" type="file" [id]="'file-upload-'+item.GroupChatId" name="files" multiple>   
+                            <textarea  name="Contents"  [id]="'input-'+item.GroupChatId" (keydown)="onKeyDown($event,item.GroupChatId)"  (input)="onInputChange($event,item.GroupChatId)" placeholder="" type="text"></textarea>
+                            <label class="tooltip-container" for="">
+                                <span class="tooltip-text">Chọn biểu tượng cảm xúc</span>
+                                <i class="fa-solid fa-face-smile"></i>
+                            </label>
+                        </div>
+                       
+                    </div>
+                    <div (click)="simulateEnter(item.GroupChatId)" class="input-mess-feeling tooltip-container">
+                        <span class="tooltip-text">Nhấn Enter để gửi</span>
+                        <!-- <i class="fa-solid fa-thumbs-up"></i> -->
+                        <i style="width: 50%;" class="fa-solid fa-paper-plane-top"></i>
+                    </div>
+                
+                </li>
+            </ul>
+        </section>
+    </div>
+   
+</main>

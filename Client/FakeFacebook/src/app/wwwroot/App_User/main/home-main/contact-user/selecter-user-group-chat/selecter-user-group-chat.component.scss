@@ -1,0 +1,354 @@
+// @use '/@angular/material' as mat;
+
+// // Customize the entire app. Change :root to your selector if you want to scope the styles.
+// :root {
+//   @include mat.button-overrides((
+//     filled-container-color: orange,
+//     filled-label-text-color: red,
+//   ));
+// }
+section .example-section{
+  max-height: 100vh;
+  width: 100%;
+  background: white; 
+  overflow: hidden; 
+  position: relative;
+  &:hover{
+      overflow: auto;
+  };
+  ul{
+  list-style-type: none;
+  padding-bottom: 3px;
+    padding-top: 3px;
+    margin: 0;
+  }
+}
+
+.button-contact-user{
+  position: relative;
+  img{
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      border: 1px solid #c8c8c8
+  }
+  .online-dot {
+      width: 13px;
+      height: 13px;
+      background-color: #009f00;
+      border-radius: 50%;
+      display: inline-block;
+      border: 2px solid;
+      border-color: #ffffff;
+      position: absolute;
+      bottom: 1px;
+      left: 27px;
+  
+    }
+
+}
+
+i{
+  cursor: pointer;
+  width: 36px;
+  height: 36px;
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+  &:hover{
+      background: #dedfe0c9;
+      border-radius: 50%;
+  }
+}
+p{
+  margin: 0px;
+  font-weight: bold;
+  font-family: 'Helvetica Neue', Arial, sans-serif;
+}
+
+.list-user{
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  padding: 9px;
+  cursor: pointer;
+  &:hover{
+      background: #dedfe0c9;
+      border-radius: 10px;
+  }
+}
+.end-of-content{
+  border-bottom: 2px solid #7e7e7e57;
+  width: 95%;
+  display: flex
+;
+
+}
+.p-group-chat{
+  font-size: 20px;
+  padding-bottom: 7px;
+  color: #6e6e6e;
+}
+.seach-contact-user{
+  padding-right: 17px;
+  padding-top: 17px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 7px;
+  p{
+      font-size: 21px;
+      font-weight: bold;
+      color: #6e6e6e;  
+  }
+  div{
+      display: flex;
+      font-size: 17px;
+      padding-left: 23px;
+      position: absolute;
+      right: 23px;
+      
+  }
+}
+span{
+  font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
+  font-weight: 500;
+}
+//--------------------------------------------------------------------------------------------
+
+.example-section {
+  margin: 0;
+  padding-right: 17px;
+  background: white;
+  border-radius: 7px;
+  padding-top: 0px;
+  padding-left: 0px;
+  padding-bottom: 0px;
+  overflow: hidden !important;
+  height: 100%;
+  }
+  
+  .example-margin {
+    margin: 0 12px;
+  }
+  
+  ul {
+    list-style-type: none;
+    margin-top: 4px;
+  }
+  .select-user{
+    width: 50%;
+    max-height: 100%;
+    background: white;
+    box-shadow: 1px 1px 7px 1px #6f6f6f;
+    border-radius: 7px;
+    position: relative;
+    transition: 0.3s;
+    animation: fadeIn 0.3s ease-out forwards;
+
+  }
+  @keyframes fadeIn {
+    from {
+         opacity: 0;
+         transform: scale(0)
+    }
+    to {
+         opacity: 1;
+         transform: scale(1);
+         opacity: 1;
+         }
+  }
+  .check-user{
+    position: absolute !important;
+    right: 17px;
+  }
+  .list-user{
+    position: relative;
+    p{
+      font-weight: 500;
+    }
+  }
+  label{
+    font-size: 15px !important;
+    font-weight: 500 !important;
+  }
+  .action-window{
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    font-size: 31px;
+    margin: 7px;
+    position: absolute;
+    right: -17px;
+    z-index: 1;
+    top: -17px;
+    background: white;
+    border-radius: 50%;
+    i{
+      display: flex;
+      color: rgb(24, 49, 83);
+      width: 95%;
+      height: 95%;
+      &:hover{
+        color: #e03131;
+      }
+    }
+
+  }
+  .name-avatar-group{
+    display: flex;
+    padding-left: 21px;
+    padding-right: 21px;
+    padding-top: 17px;
+    align-items: center;
+    gap: 10px;
+    padding-bottom: 17px;
+    .select-avatar-group{
+      height: 60px;
+      aspect-ratio: 1 / 1;
+      border-radius: 50%;
+      font-size: 25px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 2px solid rgb(180 180 180 / 82%);
+      color: #686868;
+      label{
+        font-size: 25px;
+        i{
+          font-size: 25px;
+          &:hover{
+            background: unset;
+          }
+        }
+      }
+  
+
+    }
+    .select-name-group{
+      width: 100%;
+      input{
+        height: 50px;
+        border-top: none;
+        border-right: none;
+        border-left: none;
+        border-bottom: 1px solid #ababab;;
+        width: 100%;
+        &:focus-visible{
+          border-color: #0866ff;
+          border-top: none;
+          border-right: none;
+          border-left: none;
+          outline: none;
+        }
+      }
+    }
+  }
+
+  .select-friend-add{
+    margin-left: 21px;
+    margin-right: 21px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    padding-bottom: 17px;
+    border-bottom: 1px solid #c2c2c2;
+    input{
+      width: 100%;
+      height: 43px;
+      border-radius: 23px;
+      border: 1px solid #989898;
+      padding-left: 40px;
+      &:focus-visible{
+        border-color: #0866ff;
+        outline: none;
+      }
+    }
+    i{
+      position: absolute;
+      left: 6px;
+      &:hover{
+        background: unset;
+      }
+    }
+  }
+
+  .example-label {
+    display: table-cell;
+    font-size: 14px;
+    margin-left: 8px;
+    min-width: 120px;
+  }
+  
+  .example-button-row {
+    display: table-cell;
+    display: flex;
+    justify-content: flex-end;
+    bottom: 7px;
+    right: 7px;
+  }
+  
+  .example-button-row .mat-mdc-button-base {
+    margin: 8px 8px 8px 0;
+  }
+  
+  .example-flex-container {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+
+  }
+  
+  .example-button-container {
+  
+    display: flex;
+    justify-content: center;
+    button{
+      span{
+        font-weight: bold !important;
+      }
+    }
+    .confirm{
+      background: #0866ff ;
+      color: white !important;
+     
+      box-shadow: 1px 2px 0px 0px #c6c6c6;
+    }
+    
+  }
+  .example-list-section{
+    ul{
+      max-height: 257px;
+      overflow: auto;
+    }
+  }
+  .icon-add{
+    display: flex !important;
+    align-items: center;
+    i{
+      &:hover{
+        background: unset;
+      }
+    }
+  }
+  .avatar-group{
+    width: 57px;
+    height: 57px;
+    border-radius: 50%;
+    cursor: pointer;
+  }
+  .div-selecter{
+    overflow: hidden;
+    max-height: 300px;
+    @media (max-width: 1500px) {
+      max-height: 257px;
+    }
+    @media (max-width: 1024px) {
+      max-height:200px
+    }
+  }
+
+.list-user-container{
+  padding-left: 17px;
+}
+  

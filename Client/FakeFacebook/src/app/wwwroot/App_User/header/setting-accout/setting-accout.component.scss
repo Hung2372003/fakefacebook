@@ -1,0 +1,91 @@
+p{
+    margin: 0;
+    padding: 0;
+    font-weight: 500;
+    font-size: 14px;
+    color: black;
+}
+.profile-container {
+    background-color: #fff;
+    width: 100%;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px 3px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+  }
+  
+  /* Header: Avatar và Tên cùng hàng */
+  .profile-header {
+    display: flex;
+    align-items: center;
+    gap: 10px; /* Khoảng cách giữa avatar và tên */
+  }
+  
+  .profile-avatar{
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    background-color: #ccc;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    img {
+        width: 35px;
+        height: 35px;
+        border-radius: 50%;
+        background-color: #ccc;
+        border: 1px solid #b4b4b4;
+      }
+      
+  }
+  
+ 
+  .profile-name {
+    font-weight: 500;
+    font-size: 17px;
+    color: black;
+  }
+  
+  /* Profile Actions */
+  .profile-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  .action-item {
+    display: flex;
+    align-items: center;
+    background-color: #e4e6eb;
+    border-radius: 8px;
+    padding: 10px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+    justify-content: center;
+    gap: 7px;
+  }
+  
+  .action-item:hover {
+    background-color: #dcdfe3;
+  }
+  
+  .action-icon {
+    width: 20px;
+    height: 20px;
+    margin-right: 10px;
+  }
+  
+  .action-item button {
+    background: none;
+    border: none;
+    color: #000;
+    font-size: 14px;
+    text-align: left;
+    flex-grow: 1;
+    cursor: pointer;
+  }
+  
+  /* Gạch ngang ngăn cách */
+  .separator {
+    border-top: 1px solid #e0e0e0;
+    margin: 15px 0;
+  }

@@ -1,0 +1,21 @@
+<div class="container">
+    <ng-container *ngIf="listFriend=='' ||listFriend==null">
+        <h6 class="notlist">Chưa có người bạn nào</h6>
+    </ng-container>
+    <h1>Bạn bè</h1>
+    <div class="friend-list">
+        <ng-container *ngFor="let item of listFriend" >
+            <div (click)="OpenInfor(item.userCode)" class="friend-item">
+                <img  src="{{item.path}}" alt="{{item.name}}" class="avatar">
+                <div class="friend-info">
+                <h3>{{item.name}}</h3>
+                <ng-container *ngIf="item.mutualFriend>0">
+                    <p>{{item.mutualFriend}} bạn chung</p>
+                </ng-container>
+                
+                </div>
+                <div class="friend-actions">...</div>
+            </div>
+        </ng-container>
+    </div>
+  </div>

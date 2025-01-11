@@ -1,0 +1,80 @@
+
+<section class="select-user">
+    <div style="padding: 21px 21px 10px;border-bottom: 1px solid #b7b7b7;">
+      <p>Tạo Nhóm</p>
+    </div>
+    <div (click)="closeSelect()" class="action-window">
+      <i class="fa-solid fa-circle-xmark"></i>
+    </div>
+    <div class="name-avatar-group">
+      <div class="select-avatar-group">
+        <label for="add-avatar-group" *ngIf="previewUrl!=null;else icon">
+          <img [src]="this.previewUrl" alt="Preview" class="avatar-group" />
+        </label>
+        <ng-template #icon>
+          <label for="add-avatar-group"><i class="fa-solid fa-camera"></i></label>
+        </ng-template>
+        <input (input)="onAvatarGroupChange($event)" style="display: none;" id="add-avatar-group" accept="image/*" type="file">
+      </div>
+      <div class="select-name-group">
+        <input [(ngModel)]="groupName" type="text" placeholder="Nhập tên nhóm...">
+      </div>
+    </div>
+    <div class="select-friend-add">
+      <i class="fa-light fa-magnifying-glass"></i>
+      <input (input)="onSearchUserChange($event)" type="text" placeholder="Nhập tên...">
+    </div>
+    <div class="div-selecter">
+      <section class="example-section">
+        <!-- <span class="example-list-section">
+          <mat-checkbox
+            class="example-margin"
+            [checked]="task().completed"
+            [indeterminate]="partiallyComplete()"
+            (change)="update($event.checked)"
+          >
+            {{task().name}}
+          </mat-checkbox>
+        </span> -->
+        <span class="example-list-section">
+          <ul class="list-user-container">
+            @for (subtask of task().subtasks; track subtask; let i = $index) {             
+              <li *ngIf="subtask.statusSearch==true" class="list-user" >               
+                <div class="button-contact-user">
+                    <img  src="{{subtask.avatar}}" alt="">
+                    <span *ngFor=" let UserCodeOnline of ListUserOnline ">
+                    <span *ngIf="UserCodeOnline == subtask.userCode.toString() " class="online-dot"></span>
+                    </span>
+                </div>
+                <p>{{subtask.name}}</p>                 
+                <mat-checkbox class="check-user" [checked]="subtask.completed" (change)="update($event.checked, i)">
+                </mat-checkbox>             
+              </li>                              
+            }
+          </ul>
+        </span>
+      </section>
+    </div>
+    <!-- <div class="action-main">
+      <ul>
+        <li></li>
+        <li></li>
+      </ul>
+    </div> -->
+    <div class="example-button-row">
+      <div class="example-flex-container">
+        <div class="example-button-container">
+          <button (click)="closeSelect()" mat-raised-button>
+            Hủy
+          </button>
+        </div>
+        <div class="example-button-container">
+          <button (click)="createGroupChat()" [ngStyle]="{'background':backGroupBAddGroup,'pointer-events': statusBAddGroup}" class="confirm" mat-flat-button>
+            <mat-icon class="icon-add"><i class="fa-solid fa-plus"></i></mat-icon>
+            Tạo nhóm
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+

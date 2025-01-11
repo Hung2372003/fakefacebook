@@ -1,0 +1,231 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "F:\\Individual\\desktop-app\\facebook-desktopapp\\Server\\FakeFacebook\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{C873692F-C4C6-4E89-A3B9-9C8E044F3F11}|FakeFacebook\\FakeFacebook.csproj|f:\\individual\\desktop-app\\facebook-desktopapp\\server\\fakefacebook\\fakefacebook\\controllers\\chatboxmanagerment\\chatboxcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C873692F-C4C6-4E89-A3B9-9C8E044F3F11}|FakeFacebook\\FakeFacebook.csproj|solutionrelative:fakefacebook\\controllers\\chatboxmanagerment\\chatboxcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C873692F-C4C6-4E89-A3B9-9C8E044F3F11}|FakeFacebook\\FakeFacebook.csproj|f:\\individual\\desktop-app\\facebook-desktopapp\\server\\fakefacebook\\fakefacebook\\hubs\\chathub.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C873692F-C4C6-4E89-A3B9-9C8E044F3F11}|FakeFacebook\\FakeFacebook.csproj|solutionrelative:fakefacebook\\hubs\\chathub.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C873692F-C4C6-4E89-A3B9-9C8E044F3F11}|FakeFacebook\\FakeFacebook.csproj|f:\\individual\\desktop-app\\facebook-desktopapp\\server\\fakefacebook\\fakefacebook\\controllers\\postmanagement\\postmanagementcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C873692F-C4C6-4E89-A3B9-9C8E044F3F11}|FakeFacebook\\FakeFacebook.csproj|solutionrelative:fakefacebook\\controllers\\postmanagement\\postmanagementcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C873692F-C4C6-4E89-A3B9-9C8E044F3F11}|FakeFacebook\\FakeFacebook.csproj|f:\\individual\\desktop-app\\facebook-desktopapp\\server\\fakefacebook\\fakefacebook\\models\\chatgroups.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C873692F-C4C6-4E89-A3B9-9C8E044F3F11}|FakeFacebook\\FakeFacebook.csproj|solutionrelative:fakefacebook\\models\\chatgroups.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C873692F-C4C6-4E89-A3B9-9C8E044F3F11}|FakeFacebook\\FakeFacebook.csproj|f:\\individual\\desktop-app\\facebook-desktopapp\\server\\fakefacebook\\fakefacebook\\data\\fakefacebookdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C873692F-C4C6-4E89-A3B9-9C8E044F3F11}|FakeFacebook\\FakeFacebook.csproj|solutionrelative:fakefacebook\\data\\fakefacebookdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C873692F-C4C6-4E89-A3B9-9C8E044F3F11}|FakeFacebook\\FakeFacebook.csproj|f:\\individual\\desktop-app\\facebook-desktopapp\\server\\fakefacebook\\fakefacebook\\models\\feelingpost.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C873692F-C4C6-4E89-A3B9-9C8E044F3F11}|FakeFacebook\\FakeFacebook.csproj|solutionrelative:fakefacebook\\models\\feelingpost.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C873692F-C4C6-4E89-A3B9-9C8E044F3F11}|FakeFacebook\\FakeFacebook.csproj|f:\\individual\\desktop-app\\facebook-desktopapp\\server\\fakefacebook\\fakefacebook\\controllers\\chatboxmanagerment\\actionmessagecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C873692F-C4C6-4E89-A3B9-9C8E044F3F11}|FakeFacebook\\FakeFacebook.csproj|solutionrelative:fakefacebook\\controllers\\chatboxmanagerment\\actionmessagecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C873692F-C4C6-4E89-A3B9-9C8E044F3F11}|FakeFacebook\\FakeFacebook.csproj|f:\\individual\\desktop-app\\facebook-desktopapp\\server\\fakefacebook\\fakefacebook\\controllers\\appuser\\personalactioncontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C873692F-C4C6-4E89-A3B9-9C8E044F3F11}|FakeFacebook\\FakeFacebook.csproj|solutionrelative:fakefacebook\\controllers\\appuser\\personalactioncontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C873692F-C4C6-4E89-A3B9-9C8E044F3F11}|FakeFacebook\\FakeFacebook.csproj|f:\\individual\\desktop-app\\facebook-desktopapp\\server\\fakefacebook\\fakefacebook\\models\\chatcontent.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C873692F-C4C6-4E89-A3B9-9C8E044F3F11}|FakeFacebook\\FakeFacebook.csproj|solutionrelative:fakefacebook\\models\\chatcontent.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C873692F-C4C6-4E89-A3B9-9C8E044F3F11}|FakeFacebook\\FakeFacebook.csproj|f:\\individual\\desktop-app\\facebook-desktopapp\\server\\fakefacebook\\fakefacebook\\controllers\\appuser\\actionpostcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C873692F-C4C6-4E89-A3B9-9C8E044F3F11}|FakeFacebook\\FakeFacebook.csproj|solutionrelative:fakefacebook\\controllers\\appuser\\actionpostcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C873692F-C4C6-4E89-A3B9-9C8E044F3F11}|FakeFacebook\\FakeFacebook.csproj|f:\\individual\\desktop-app\\facebook-desktopapp\\server\\fakefacebook\\fakefacebook\\controllers\\appuser\\usercontactcontrollers.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C873692F-C4C6-4E89-A3B9-9C8E044F3F11}|FakeFacebook\\FakeFacebook.csproj|solutionrelative:fakefacebook\\controllers\\appuser\\usercontactcontrollers.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C873692F-C4C6-4E89-A3B9-9C8E044F3F11}|FakeFacebook\\FakeFacebook.csproj|f:\\individual\\desktop-app\\facebook-desktopapp\\server\\fakefacebook\\fakefacebook\\controllers\\accountsecurity\\usersecuritycontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C873692F-C4C6-4E89-A3B9-9C8E044F3F11}|FakeFacebook\\FakeFacebook.csproj|solutionrelative:fakefacebook\\controllers\\accountsecurity\\usersecuritycontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 213,
+          "SelectedChildIndex": 4,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{d78612c7-9962-4b83-95d9-268046dad23a}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{e1b7d1f8-9b3c-49b1-8f4f-bfc63a88835d}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "ChatGroups.cs",
+              "DocumentMoniker": "F:\\Individual\\desktop-app\\facebook-desktopapp\\Server\\FakeFacebook\\FakeFacebook\\Models\\ChatGroups.cs",
+              "RelativeDocumentMoniker": "FakeFacebook\\Models\\ChatGroups.cs",
+              "ToolTip": "F:\\Individual\\desktop-app\\facebook-desktopapp\\Server\\FakeFacebook\\FakeFacebook\\Models\\ChatGroups.cs",
+              "RelativeToolTip": "FakeFacebook\\Models\\ChatGroups.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAjAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-10T18:04:06.333Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "FeelingPost.cs",
+              "DocumentMoniker": "F:\\Individual\\desktop-app\\facebook-desktopapp\\Server\\FakeFacebook\\FakeFacebook\\Models\\FeelingPost.cs",
+              "RelativeDocumentMoniker": "FakeFacebook\\Models\\FeelingPost.cs",
+              "ToolTip": "F:\\Individual\\desktop-app\\facebook-desktopapp\\Server\\FakeFacebook\\FakeFacebook\\Models\\FeelingPost.cs",
+              "RelativeToolTip": "FakeFacebook\\Models\\FeelingPost.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAkAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-10T18:03:58.604Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "ChatBoxController.cs",
+              "DocumentMoniker": "F:\\Individual\\desktop-app\\facebook-desktopapp\\Server\\FakeFacebook\\FakeFacebook\\Controllers\\ChatBoxManagerment\\ChatBoxController.cs",
+              "RelativeDocumentMoniker": "FakeFacebook\\Controllers\\ChatBoxManagerment\\ChatBoxController.cs",
+              "ToolTip": "F:\\Individual\\desktop-app\\facebook-desktopapp\\Server\\FakeFacebook\\FakeFacebook\\Controllers\\ChatBoxManagerment\\ChatBoxController.cs",
+              "RelativeToolTip": "FakeFacebook\\Controllers\\ChatBoxManagerment\\ChatBoxController.cs",
+              "ViewState": "AgIAAMQAAAAAAAAAAAAkwHgAAAAmAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-05T06:17:37.913Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "PostManagementController.cs",
+              "DocumentMoniker": "F:\\Individual\\desktop-app\\facebook-desktopapp\\Server\\FakeFacebook\\FakeFacebook\\Controllers\\PostManagement\\PostManagementController.cs",
+              "RelativeDocumentMoniker": "FakeFacebook\\Controllers\\PostManagement\\PostManagementController.cs",
+              "ToolTip": "F:\\Individual\\desktop-app\\facebook-desktopapp\\Server\\FakeFacebook\\FakeFacebook\\Controllers\\PostManagement\\PostManagementController.cs",
+              "RelativeToolTip": "FakeFacebook\\Controllers\\PostManagement\\PostManagementController.cs",
+              "ViewState": "AgIAAOsAAAAAAAAAAAAawPYAAAArAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-24T15:22:55.317Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "PersonalActionController.cs",
+              "DocumentMoniker": "F:\\Individual\\desktop-app\\facebook-desktopapp\\Server\\FakeFacebook\\FakeFacebook\\Controllers\\AppUser\\PersonalActionController.cs",
+              "RelativeDocumentMoniker": "FakeFacebook\\Controllers\\AppUser\\PersonalActionController.cs",
+              "ToolTip": "F:\\Individual\\desktop-app\\facebook-desktopapp\\Server\\FakeFacebook\\FakeFacebook\\Controllers\\AppUser\\PersonalActionController.cs",
+              "RelativeToolTip": "FakeFacebook\\Controllers\\AppUser\\PersonalActionController.cs",
+              "ViewState": "AgIAAOUAAAAAAAAAAAAtwDYAAAAMAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-07T13:07:43.327Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "ChatHub.cs",
+              "DocumentMoniker": "F:\\Individual\\desktop-app\\facebook-desktopapp\\Server\\FakeFacebook\\FakeFacebook\\Hubs\\ChatHub.cs",
+              "RelativeDocumentMoniker": "FakeFacebook\\Hubs\\ChatHub.cs",
+              "ToolTip": "F:\\Individual\\desktop-app\\facebook-desktopapp\\Server\\FakeFacebook\\FakeFacebook\\Hubs\\ChatHub.cs",
+              "RelativeToolTip": "FakeFacebook\\Hubs\\ChatHub.cs",
+              "ViewState": "AgIAACwAAAAAAAAAAAAgwEIAAAACAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-10T16:34:28.576Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "FakeFacebookDbContext.cs",
+              "DocumentMoniker": "F:\\Individual\\desktop-app\\facebook-desktopapp\\Server\\FakeFacebook\\FakeFacebook\\Data\\FakeFacebookDbContext.cs",
+              "RelativeDocumentMoniker": "FakeFacebook\\Data\\FakeFacebookDbContext.cs",
+              "ToolTip": "F:\\Individual\\desktop-app\\facebook-desktopapp\\Server\\FakeFacebook\\FakeFacebook\\Data\\FakeFacebookDbContext.cs",
+              "RelativeToolTip": "FakeFacebook\\Data\\FakeFacebookDbContext.cs",
+              "ViewState": "AgIAAAgAAAAAAAAAAAAAwBUAAAA6AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-10T18:06:40.761Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "UserContactControllers.cs",
+              "DocumentMoniker": "F:\\Individual\\desktop-app\\facebook-desktopapp\\Server\\FakeFacebook\\FakeFacebook\\Controllers\\AppUser\\UserContactControllers.cs",
+              "RelativeDocumentMoniker": "FakeFacebook\\Controllers\\AppUser\\UserContactControllers.cs",
+              "ToolTip": "F:\\Individual\\desktop-app\\facebook-desktopapp\\Server\\FakeFacebook\\FakeFacebook\\Controllers\\AppUser\\UserContactControllers.cs",
+              "RelativeToolTip": "FakeFacebook\\Controllers\\AppUser\\UserContactControllers.cs",
+              "ViewState": "AgIAADkAAAAAAAAAAAAYwAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-07T13:07:33.451Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "UserSecurityController.cs",
+              "DocumentMoniker": "F:\\Individual\\desktop-app\\facebook-desktopapp\\Server\\FakeFacebook\\FakeFacebook\\Controllers\\AccountSecurity\\UserSecurityController.cs",
+              "RelativeDocumentMoniker": "FakeFacebook\\Controllers\\AccountSecurity\\UserSecurityController.cs",
+              "ToolTip": "F:\\Individual\\desktop-app\\facebook-desktopapp\\Server\\FakeFacebook\\FakeFacebook\\Controllers\\AccountSecurity\\UserSecurityController.cs",
+              "RelativeToolTip": "FakeFacebook\\Controllers\\AccountSecurity\\UserSecurityController.cs",
+              "ViewState": "AgIAAFQAAAAAAAAAAAAYwG0AAAAcAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-07T13:57:20.686Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "ActionMessageController.cs",
+              "DocumentMoniker": "F:\\Individual\\desktop-app\\facebook-desktopapp\\Server\\FakeFacebook\\FakeFacebook\\Controllers\\ChatBoxManagerment\\ActionMessageController.cs",
+              "RelativeDocumentMoniker": "FakeFacebook\\Controllers\\ChatBoxManagerment\\ActionMessageController.cs",
+              "ToolTip": "F:\\Individual\\desktop-app\\facebook-desktopapp\\Server\\FakeFacebook\\FakeFacebook\\Controllers\\ChatBoxManagerment\\ActionMessageController.cs",
+              "RelativeToolTip": "FakeFacebook\\Controllers\\ChatBoxManagerment\\ActionMessageController.cs",
+              "ViewState": "AgIAADAAAAAAAAAAAAAYwEcAAAAQAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-10T03:37:15.198Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "ChatContent.cs",
+              "DocumentMoniker": "F:\\Individual\\desktop-app\\facebook-desktopapp\\Server\\FakeFacebook\\FakeFacebook\\Models\\ChatContent.cs",
+              "RelativeDocumentMoniker": "FakeFacebook\\Models\\ChatContent.cs",
+              "ToolTip": "F:\\Individual\\desktop-app\\facebook-desktopapp\\Server\\FakeFacebook\\FakeFacebook\\Models\\ChatContent.cs",
+              "RelativeToolTip": "FakeFacebook\\Models\\ChatContent.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-10T10:03:32.472Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "ActionPostController.cs",
+              "DocumentMoniker": "F:\\Individual\\desktop-app\\facebook-desktopapp\\Server\\FakeFacebook\\FakeFacebook\\Controllers\\AppUser\\ActionPostController.cs",
+              "RelativeDocumentMoniker": "FakeFacebook\\Controllers\\AppUser\\ActionPostController.cs",
+              "ToolTip": "F:\\Individual\\desktop-app\\facebook-desktopapp\\Server\\FakeFacebook\\FakeFacebook\\Controllers\\AppUser\\ActionPostController.cs",
+              "RelativeToolTip": "FakeFacebook\\Controllers\\AppUser\\ActionPostController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-10T03:36:15.312Z"
+            }
+          ]
+        },
+        {
+          "DockedWidth": 378,
+          "SelectedChildIndex": -1,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{34e76e81-ee4a-11d0-ae2e-00a0c90fffc3}"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

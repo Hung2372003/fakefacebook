@@ -1,0 +1,60 @@
+section{
+    height: 100vh;
+    width: 23%;
+    position: fixed;
+    padding-bottom: 0;
+    background: #eaedf0c9;
+    ul{
+        padding: 7px;
+        list-style-type: none;
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+        padding-left: 10px;
+        padding-top:17px ;   
+        height: 100%;
+        overflow: hidden;    
+         &:hover{
+                overflow: auto;
+        };
+        @media (hover: none) {
+            overflow: auto;
+        };
+        &:active,
+        &:focus {
+            overflow: auto;
+        }
+
+        li{
+            float: left;
+            padding: 10px;
+            a{
+                display: flex;
+                gap: 7px;
+                align-items: center;
+                i{
+                   
+                    width: 36px;
+                    height: 36px;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    font-size: 25px;
+                }
+                
+                p{
+                    padding: 0;
+                    margin: 0;
+                    color: black;
+                    font-weight: 600;
+                    font-size: 15px                    
+                }
+            }
+           &:hover{
+            background: #dedfe0c9;
+            border-radius: 10px;
+           }
+        }
+    }
+}
+

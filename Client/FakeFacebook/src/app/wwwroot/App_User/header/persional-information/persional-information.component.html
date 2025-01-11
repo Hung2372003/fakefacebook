@@ -1,0 +1,73 @@
+<div class="profile-card">
+    <section [ngClass]="{'hidden-profile': displayProfile}" class="profile-card">
+        <div class="title-bar">
+            <span>Thông tin tài khoản</span>
+            <button (click)="close()" class="close-btn">&times;</button>
+        </div>
+        <div class="header" [ngStyle]="{'background': 'url(' + encodeURIImg(persionalInfor?.avatar) + ')  center/cover'}" >
+            <div class="avatar-name">              
+                <!-- <div class="avatar" style="background-image: url({{persionalInfor?.avatar}}) center/cover;"></div> -->
+                <img class="avatar" src="{{persionalInfor?.avatar}}" alt="">
+                <div class="name">{{persionalInfor?.name}}  <span class="icon-pen"><i class="fa-regular fa-pen-line"></i></span></div>
+                
+            </div>         
+        </div>
+        <div class="content">
+            <div class="personal-info">
+                <h3>Thông tin cá nhân</h3>
+                <p>Email: {{persionalInfor?.email}}</p>
+                <p>Sống tại: {{decode(persionalInfor?.address)}}</p>
+                <p>UserID: {{persionalInfor?.id}}</p>
+            </div>
+            <ng-container *ngIf="selfCode==persionalInfor?.id;else notSelfCode">
+                <button (click)="openUpdateInfor()" class="button-btn update-btn">Cập nhật</button>
+            </ng-container>
+            <ng-template #notSelfCode>
+                <div class="button-container">
+                    <button *ngIf="persionalInfor?.isFriend==true" class="button-btn unfriend-btn" (click)="unRequestFriend()">Hủy kết bạn</button>
+                    <button (click)="openChat(null,[{userCode:persionalInfor?.id,name:persionalInfor?.name,avatar:persionalInfor?.avatar}],persionalInfor?.avatar,persionalInfor?.name)" class="button-btn chat-btn">Nhắn tin</button>     
+                </div>               
+            </ng-template>
+           
+        </div>
+    </section>
+    <section [ngStyle]="{'display': displayUpdateInfor}" class="update-infor-container">
+        <div class="modal">
+          <div class="modal-header">
+              <div class="header-update">
+                <div (click)="backInofor()" class="back-infor">
+                    <i class="fa-light fa-chevron-left"></i>
+                </div>
+                <h2>Cập nhật thông tin cá nhân</h2>
+              </div>
+              <button (click)="close()" class="close-update"><i class="fa-light fa-xmark"></i></button>
+          </div>
+          <div class="update-avatar tooltip-container">
+            <label for="avatar" *ngIf="previewUrl!=null;else icon">
+                <img [src]="this.previewUrl" alt="Preview" class="avatar-group" />
+            </label>
+            <ng-template #icon>
+              <label for="avatar"><i class="fa-solid fa-camera"></i></label>
+            </ng-template>
+            <input (input)="onAvatarGroupChange($event)" id="avatar" style="display: none;" type="file">
+            <span class="tooltip-text">Đổi ảnh đại diện</span>
+            <!-- <p style="font-weight: 500;">Thay ảnh đại diện!</p> -->
+          </div>
+          <form>
+              <div class="form-group">
+                  <label for="updateName">Tên hiển thị</label>
+                  <input type="text" id="updateName" [(ngModel)]="updateName" [ngModelOptions]="{standalone: true}">
+              </div>
+              <div class="form-group">
+                <label for="updateAddress">Địa chỉ</label>
+                <input type="text" id="updateAddress"  [(ngModel)]="updateAddress" [ngModelOptions]="{standalone: true}">
+              </div>
+              <div class="form-actions">
+                  <button (click)="backInofor()" type="button" class="update button-btn unfriend-btn">Hủy</button>
+                  <button (click)="updateInfor()" type="submit" class="update button-btn update-btn">Cập nhật</button>
+              </div>
+          </form>
+      </div>
+    </section>
+</div>
+
