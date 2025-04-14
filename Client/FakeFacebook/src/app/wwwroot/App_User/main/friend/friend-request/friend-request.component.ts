@@ -33,7 +33,7 @@ export class FriendRequestComponent implements OnInit{
   }
   async unFriend(id:number){
     await this.CallApiService.CallApi('PersonalAction/Unfriend','post',JSON.stringify(id))
-    this.getListRequestFriend();
+    await this.getListRequestFriend()
     this.cdr.detectChanges();
   }
 

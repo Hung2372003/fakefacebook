@@ -1,15 +1,11 @@
-﻿using FakeFacebook.Commom;
+﻿using FakeFacebook.AES;
+using FakeFacebook.Commom;
 using FakeFacebook.Data;
 using FakeFacebook.Models;
 using FakeFacebook.ModelViewControllers.AccountSecurity;
-
 using Microsoft.AspNetCore.Mvc;
-
-using Microsoft.IdentityModel.Tokens;
-
-using System.IdentityModel.Tokens.Jwt;
+using System.Security.Cryptography;
 using System.Security.Claims;
-using System.Text;
 namespace FakeFacebook.Controllers.AccountSecurity
 {
     [ApiController]
@@ -17,13 +13,37 @@ namespace FakeFacebook.Controllers.AccountSecurity
    
     public class UserSecurityController : ControllerBase
     {
-
         private readonly string? _key;
+        private readonly string? _keyAES;
         private readonly FakeFacebookDbContext _context;
-
-        public UserSecurityController(IConfiguration configuration, FakeFacebookDbContext context) {
+        private readonly JwtTokenService _jwtService;
+        private readonly RsaKeyManager _keyManager;
+        public UserSecurityController(IConfiguration configuration, FakeFacebookDbContext context, JwtTokenService jwtService, RsaKeyManager keyManager) {
             _key = configuration["JwtSettings:SecretKey"];
             _context = context;
+            _keyAES = Environment.GetEnvironmentVariable("MASTER_KEY", EnvironmentVariableTarget.Machine);
+            _jwtService = jwtService;
+            _keyManager = keyManager;
+        }
+
+        [HttpPost("GetKeyAES")]
+        public JsonResult GetKeyAES([FromBody] string publicKey)
+        {
+            var msg = new message() { Id = null, Title = "", Error = false, Object = "" };
+            string encryptedAESKey = RsaKeyManager.EncryptAESKeyWithRSA(_keyAES, publicKey);
+            msg.Object = encryptedAESKey;
+            return new JsonResult(msg);
+        }
+
+        [HttpGet("GetPublicRSAKey")]
+        public JsonResult GetPublicRSAKey()
+        {
+            var msg = new message() { Title = "", Error = false, Object = "" };
+            var StaticUser = Convert.ToInt32(HttpContext.User.FindFirst(ClaimTypes.NameIdentifier)?.Value);
+            RSA rsa = RSA.Create(2048);
+            string publicKeyPem = _keyManager.ExportPublicKeyToPem();
+            msg.Object = publicKeyPem;
+            return new JsonResult(msg);
         }
 
         // Đăng nhập
@@ -32,21 +52,19 @@ namespace FakeFacebook.Controllers.AccountSecurity
         {
             var msg = new message() { Id=null,Title = "", Error = false, Object = "" };
             try {
-                var CheckUser = _context.UserAccounts.FirstOrDefault(x => x.UserName == loginModel.UserName);
-                if ( CheckUser!=null && CheckUser.UserPassword == loginModel.Password ) {
-                    var token = GenerateJwtToken(CheckUser.UserCode);
-                    Response.Cookies.Append("token", token, new CookieOptions
-                    {
-                        Expires = DateTimeOffset.UtcNow.AddHours(24),
-                        SameSite = SameSiteMode.None,
-                        Secure = false
-                    });
-                    msg.Title = "đăng nhập thành công";
+                string privateKey = _keyManager.ExportPrivateKeyToPem();
+                string AESKey = RsaKeyManager.DecryptWithPrivateKey(privateKey, loginModel.Key);
+                loginModel.UserName = AESDecryptioncs.Decryption(loginModel.UserName, AESKey);
+                loginModel.Password = AESDecryptioncs.Decryption(loginModel.Password, AESKey);
+                var CheckUser = _context.UserAccounts.FirstOrDefault(x => x.UserName == AESEncryption.Encryption(loginModel.UserName,_keyAES) && x.IsEncryption == true);
+                if ( CheckUser!=null && CheckUser.UserPassword == AESEncryption.Encryption(loginModel.Password,_keyAES) ) {
+                    var token = _jwtService.GenerateJwtToken(CheckUser.UserCode, CheckUser.Role, CheckUser.Permission);
+                    msg.Title = "Đăng nhập thành công";
                     msg.Object = token;
                     msg.Id = CheckUser.UserCode;
                     return new JsonResult(msg);
                 }
-                else if (  CheckUser != null && CheckUser.UserPassword != loginModel.Password )
+                else if (  CheckUser != null && CheckUser.UserPassword != AESEncryption.Encryption(loginModel.Password,_keyAES))
                 {
                     msg.Error = true;
                     msg.Title = "PassFalse";
@@ -55,7 +73,6 @@ namespace FakeFacebook.Controllers.AccountSecurity
                     msg.Error = true;
                     msg.Title = "UserFalse";
                 }
-
             }
             catch(Exception e) {
                 msg.Error = true;
@@ -64,75 +81,63 @@ namespace FakeFacebook.Controllers.AccountSecurity
             }
             return new JsonResult(msg);
         }
-
-        // tạo Token
-        private string GenerateJwtToken(int usercode)
-        {
-            var tokenHandler = new JwtSecurityTokenHandler();
-            var key = Encoding.ASCII.GetBytes(_key);
-            var tokenDescriptor = new SecurityTokenDescriptor
-            {
-                Subject = new ClaimsIdentity(new[] { new Claim(ClaimTypes.NameIdentifier, usercode.ToString() ) }),
-                Expires = DateTime.UtcNow.AddHours(24),
-                SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
-            };
-            var token = tokenHandler.CreateToken(tokenDescriptor);
-            return tokenHandler.WriteToken(token);
-        }
-
         //Đăng ký
         [HttpPost("RegisterAcc")]
         public JsonResult RegisterAcc([FromBody] RegisterAccModelViews RegAcc)
-        {
+        { 
             var msg = new message() { Id = null, Title = "", Error = false, Object = "" };
             try
             {
-                var check = _context.UserAccounts.FirstOrDefault(x => x.UserName == RegAcc.UserAccout);
+                string privateKey = _keyManager.ExportPrivateKeyToPem();
+                string AESKey = RsaKeyManager.DecryptWithPrivateKey(privateKey, RegAcc.Key);
+                RegAcc.Email = AESDecryptioncs.Decryption(RegAcc.Email, AESKey);
+                RegAcc.Address = AESDecryptioncs.Decryption(RegAcc.Address, AESKey);
+                RegAcc.PhoneNumber = AESDecryptioncs.Decryption(RegAcc.PhoneNumber, AESKey);
+                RegAcc.UserAccout = AESDecryptioncs.Decryption(RegAcc.UserAccout, AESKey);
+                RegAcc.Password = AESDecryptioncs.Decryption(RegAcc.Password, AESKey);
+                RegAcc.Birthday = AESDecryptioncs.Decryption(RegAcc.Birthday, AESKey);
+                var check = _context.UserAccounts.FirstOrDefault(x => AESEncryption.Encryption(x.UserName,_keyAES) == RegAcc.UserAccout && x.IsEncryption==true);
                 if (check != null) {
                     msg.Error = true;
                     msg.Title = "Tên tài khoản đã tồn tại";
                     return new JsonResult(msg);
                 }
 
-                var AddAvatar = new FileInformation();
-                AddAvatar.CreatedTime = DateTime.Now;
-                AddAvatar.IsDeleted = false;
-                AddAvatar.Path = "/Images/Avatar/mostavatar.png";
-                _context.Add(AddAvatar);
-                _context.SaveChanges();
-
                 var AddInfor = new UserInformation();
                 AddInfor.IsDeleted = false;
                 AddInfor.Name = RegAcc.FirstName + " " + RegAcc.LastName;
-                AddInfor.Email = RegAcc.Email;
-                AddInfor.PhoneNumber= RegAcc.PhoneNumber;
-                AddInfor.Address = RegAcc.Address;
-                AddInfor.FileCode = AddAvatar.Id;
+                AddInfor.Email = AESEncryption.Encryption(RegAcc.Email,_keyAES);
+                AddInfor.PhoneNumber= AESEncryption.Encryption(RegAcc.PhoneNumber, _keyAES);
+                AddInfor.Address = AESEncryption.Encryption(RegAcc.Address, _keyAES);
+                AddInfor.Birthday= AESEncryption.Encryption(RegAcc.Birthday,_keyAES);
+                AddInfor.Avatar= "/Images/Avatar/mostavatar.png";
+                AddInfor.IsEncryption = true;
                 _context.UserInformations.Add(AddInfor);
                 _context.SaveChanges();
 
                 var AddAcc = new UserAccount();
                 AddAcc.UserCode = AddInfor.Id;
                 AddAcc.IsDeleted = false;
-                AddAcc.UserName = RegAcc.UserAccout;
-                AddAcc.UserPassword = RegAcc.Password;
+                AddAcc.UserName = AESEncryption.Encryption(RegAcc.UserAccout, _keyAES);
+                AddAcc.UserPassword = AESEncryption.Encryption(RegAcc.Password, _keyAES);
                 AddAcc.CreatedTime = DateTime.Now;
                 AddAcc.UpdatedTime= DateTime.Now;
+                AddAcc.CreatedBy = AddInfor.Id;
+                AddAcc.IsEncryption = true;
+                AddAcc.Role = "User";
+                AddAcc.Permission = "NOT";
                 _context.UserAccounts.Add(AddAcc);
                 _context.SaveChanges();
 
-
-
-                var token = GenerateJwtToken(AddAcc.UserCode);
+                var token = _jwtService.GenerateJwtToken(AddAcc.UserCode, AddAcc.Role, AddAcc.Permission);
                 Response.Cookies.Append("token", token, new CookieOptions
                 {
-                    HttpOnly = false, // Thay đổi thành true nếu bạn không cần truy cập cookie từ JavaScript
-                    Secure = false,   // Đặt thành true khi chạy trên HTTPS
-                    SameSite = SameSiteMode.None, // Cho phép cookie được gửi từ cross-origin
+                    HttpOnly = false, 
+                    Secure = false,   
+                    SameSite = SameSiteMode.None, 
                     Expires = DateTimeOffset.UtcNow.AddHours(24)
                 });
                 msg.Object = token;
-                msg.Title = "Chào mừng bạn đến với FakeFaceBook";
                 msg.Id = AddAcc.UserCode;
 
                 return new JsonResult(msg);

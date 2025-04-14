@@ -20,6 +20,7 @@
 <main #frameChat>
    <div *ngFor="let item of ListFrame"
    (click)="selecterFrame(item.GroupChatId)"
+   [ngClass]="{'of-home': isHome}"
    class="chat-box" 
    [attr.data-frame-groupchatid]="item.GroupChatId"
    [id]="'frame-'+item.GroupChatId">   

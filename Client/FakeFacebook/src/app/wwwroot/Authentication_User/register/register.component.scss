@@ -1,2 +1,19 @@
 @import '../../../../assets/Admin/css/restortCss/admin-2.purged.css';
-@import '../../../../assets/Admin/css/font-end-some/all.css'
+@import '../../../../assets/Admin/css/font-end-some/all.css';
+
+.date-birth{
+    position: relative;
+    position: relative;
+    display: flex
+;
+    align-items: center;
+}
+.icon-date{
+    position: absolute;
+    right: 1%;
+    cursor: pointer;
+    &:hover{
+        color: rgb(98, 98, 98);
+    }    
+    color: rgb(97, 0, 0);
+}

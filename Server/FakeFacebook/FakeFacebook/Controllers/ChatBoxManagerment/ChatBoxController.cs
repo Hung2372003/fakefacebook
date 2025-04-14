@@ -49,26 +49,22 @@ namespace FakeFacebook.Controllers.ChatBoxManagerment
                                     ListMember = (from x in _context.GroupMembers.Where(x => x.GroupChatId == a.Id && x.IsDeleted == false)
                                                   join y in _context.UserInformations
                                                   on x.MemberCode equals y.Id
-
-                                                  join z in _context.FileInformations
-                                                  on y.FileCode equals z.Id into z1
-                                                  from getFile in z1.DefaultIfEmpty()
-                                                  group new { x, y, getFile }
+                                                  group new { x, y }
                                                   by new
                                                   {
 
                                                       UserCode = x.MemberCode,
                                                       Name = _context.UserInformations.FirstOrDefault(a => a.Id == x.MemberCode).Name,
                                                       y.FileCode,
-                                                      getFile.Path,
+                                                      y.Avatar
                                                   } into g
                                                   select new
                                                   {
 
                                                       g.Key.UserCode,
                                                       g.Key.Name,
-                                                      Avatar = (g.Key.Path != null) ?
-                                                           $"{Request.Scheme}://{Request.Host}/{g.Key.Path}"
+                                                      Avatar = (g.Key.Avatar != null) ?
+                                                           $"{Request.Scheme}://{Request.Host}/{g.Key.Avatar}"
                                                            : $"{Request.Scheme}://{Request.Host}/Images/Avatar/mostavatar.png"
                                                   }).ToList(),
                                     GroupDouble = a.GroupDouble,
@@ -386,7 +382,7 @@ namespace FakeFacebook.Controllers.ChatBoxManagerment
                 _context.ChatGroups.Add(creatGroupChat);
                 _context.SaveChanges();
 
-                string avatarPath=null;
+                string avatarPath="";
                 if (ojb.Avatar != null) {
                     avatarPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/Images/GroupAvatar", ojb.Avatar.FileName);
                     using (var fileSave = new FileStream(avatarPath, FileMode.Create))

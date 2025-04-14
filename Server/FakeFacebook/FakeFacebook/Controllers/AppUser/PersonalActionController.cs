@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
 using System.Text.RegularExpressions;
 using System.Text;
-using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
+using FakeFacebook.AES;
 
 namespace FakeFacebook.Controllers.AppUser
 {
@@ -18,10 +18,12 @@ namespace FakeFacebook.Controllers.AppUser
     public class PersonalActionController:ControllerBase
     {
         private readonly FakeFacebookDbContext _context;
+        private readonly IConfiguration _configuration;
 
-        public PersonalActionController(FakeFacebookDbContext context)
+        public PersonalActionController(FakeFacebookDbContext context, IConfiguration configuration)
         {
             _context = context;
+            _configuration = configuration;
         }
 
         [HttpPost("GetPersonalInformation")]
@@ -29,24 +31,45 @@ namespace FakeFacebook.Controllers.AppUser
         {
             var msg = new message() { Title = "", Error = false, Object = ""};
             var StaticUser = Convert.ToInt32(HttpContext.User.FindFirst(ClaimTypes.NameIdentifier)?.Value);
+            var KeyAES = _configuration["AESKeyTest:AESKey"];
+        
             try
             {
                 var get = _context.UserInformations.FirstOrDefault(x => x.Id == userCode && x.IsDeleted == false);
                 var checkFriend = _context.FriendDoubles.FirstOrDefault(x => ((x.UserCode1 == StaticUser && x.UserCode2 == userCode)
                                                                         || (x.UserCode2 == StaticUser && x.UserCode1 == userCode))
                                                                         && x.Status == "ALREADY_FRIENDS" && x.IsDeleted==false)?.Id;
-                msg.Object = new
+
+                if (userCode == StaticUser)
                 {
-                    get.Id,
-                    get.Name,
-                    get.Address,
-                    get.PhoneNumber,
-                    get.Email,
-                    IsFriend = checkFriend != null ? true:false,
-                    Avatar = $"{Request.Scheme}://{Request.Host}/{_context.FileInformations.FirstOrDefault(x => x.Id == get.FileCode).Path}" ,
-                };
+                    msg.Object = new
+                    {
+                        get.Id,
+                        get.Name,
+                        Address=AESDecryptioncs.Decryption(get.Address,KeyAES),
+                        PhoneNumber=AESDecryptioncs.Decryption(get.PhoneNumber,KeyAES),
+                        Email=AESDecryptioncs.Decryption(get?.Email,KeyAES),
+                        IsFriend = checkFriend != null ? true : false,
+                        Avatar = $"{Request.Scheme}://{Request.Host}/{get.Avatar}",
+                    };
+                }
+                else
+                {
+                    msg.Object = new
+                    {
+                        get.Id,
+                        get.Name,
+                        get.Address,
+                        get.PhoneNumber,
+                        get.Email,
+                        IsFriend = checkFriend != null ? true : false,
+                        Avatar = $"{Request.Scheme}://{Request.Host}/{get.Avatar}",
+                    };
+
+                }
 
             }
+
             catch (Exception e)
             {
                 msg.Error = true;
@@ -102,17 +125,14 @@ namespace FakeFacebook.Controllers.AppUser
                               on a.UserCode equals b.Id
                               join d in cout
                               on a.UserCode equals d.UserCode
-                              join c in _context.FileInformations
-                              on b.FileCode equals c.Id into c1
-                              from c in c1.DefaultIfEmpty()
                               select new
                               {
                                   a.UserCode,
                                   b.Name,
                                   MutualFriend = d.CoutMutualFriend,
-                                  Avatar = (c == null) ?
+                                  Avatar = (b.Avatar == null) ?
                                         $"{Request.Scheme}://{Request.Host}/Images/Avatar/mostavatar.png" :
-                                        $"{Request.Scheme}://{Request.Host}/{c.Path}"
+                                        $"{Request.Scheme}://{Request.Host}/{b.Avatar}"
 
                               };
           return new JsonResult(ListFriends.ToList());
@@ -127,27 +147,22 @@ namespace FakeFacebook.Controllers.AppUser
             {
                 var check = _context.UserInformations.FirstOrDefault(x => x.Id == StaticUser && x.IsDeleted == false);
                 if (infor.Avatar != null)
-                {            
-                    var update = new FileInformation();
-                    update.Id = check.FileCode;
-                    update.UpdatedTime = DateTime.Now;
-                    update.UpdatedBy = StaticUser;
-                    update.Path = "Images/Avatar/" + infor.Avatar?.FileName;
-                    update.Type = infor.Avatar?.ContentType;
-                    _context.FileInformations.Update(update);
+                {
+                    check.Avatar = "Images/Avatar/" + infor.Avatar?.FileName;
                     _context.SaveChanges();
                     var FilePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/Images/Avatar", infor.Avatar.FileName);
                     using (var stream = new FileStream(FilePath, FileMode.Create))
                     {
                         infor.Avatar.CopyTo(stream);
                     }
-                    msg.Object = $"{Request.Scheme}://{Request.Host}/{update.Path}";
+                    msg.Object = $"{Request.Scheme}://{Request.Host}/{check.Avatar}";
                 }
-
                 check.Email = (infor.Email != "" && infor.Email !=null) ? infor.Email : check.Email;
                 check.Name = (infor.Name != "" && infor.Name!=null)? infor.Name:check.Name;
                 check.PhoneNumber = (infor.PhoneNumber !="" && infor.PhoneNumber!=null)?infor.PhoneNumber:check.PhoneNumber;
                 check.Address = (infor.Address != "" && infor.Address!=null)? infor.Address:check.Address;
+                check.UpdatedTime = DateTime.Now;
+                check.UpdatedBy = StaticUser;
                 _context.SaveChanges();
 
                 msg.Object = new {
@@ -158,7 +173,7 @@ namespace FakeFacebook.Controllers.AppUser
                     PhoneNumber=check.PhoneNumber,
                     Email=check.Email,
                     IsFriend=false,
-                    Avatar = $"{Request.Scheme}://{Request.Host}/{_context.FileInformations.FirstOrDefault(x => x.Id == check.FileCode).Path}",
+                    Avatar = $"{Request.Scheme}://{Request.Host}/{check.Avatar}",
                 };
                
                 msg.Title = "Cập nhật thành công";
@@ -279,8 +294,6 @@ namespace FakeFacebook.Controllers.AppUser
 
             var user = (from a in _context.UserInformations.Where(x => x.IsDeleted == false).Take(10).ToList()
                         .Where(x => ContainsCharIgnoreCaseAndDiacritics(x.Name, text) || Convert.ToString(x.Id)==text).ToList()
-                       join b in _context.FileInformations
-                       on a.FileCode equals b.Id
                        select new
                        {
                            a.Id,
@@ -291,7 +304,7 @@ namespace FakeFacebook.Controllers.AppUser
                            Status=_context.FriendDoubles.FirstOrDefault(x=> (x.UserCode1 == a.Id && x.UserCode2 == StaticUser) 
                                                                             || (x.UserCode2 == a.Id && x.UserCode1 == StaticUser)
                                                                             &&x.IsDeleted==false)?.Status,                                              
-                           Avatar= (b.Path!=null)? $"{Request.Scheme}://{Request.Host}/{b.Path}"
+                           Avatar= (a.Avatar!=null)? $"{Request.Scheme}://{Request.Host}/{a.Avatar}"
                                                  : $"{Request.Scheme}://{Request.Host}/Images/Avatar/mostavatar.png",
                        }).ToList();
             var cout = new List<MutualFriend>();

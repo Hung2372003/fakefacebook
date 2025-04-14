@@ -9,6 +9,9 @@
         public string? UserAccout { get; set; }
         public string? PhoneNumber { get; set; }
         public string? Address { get; set; }
-      
+        public string? Birthday { get; set; }
+        public string? PublicKeyPem { get; set; }
+        public string? Key { get; set; }
+
     }
 }

@@ -38,13 +38,11 @@ namespace FakeFacebook.Controllers.ChatBoxManagerment
                         var ListUser = (from a in _context.GroupMembers.Where(x => x.IsDeleted == false && x.GroupChatId == InforGroup.Id)
                                        join b in _context.UserInformations.Where(x => x.IsDeleted == false && x.Id!=StaticUser)
                                        on a.MemberCode equals b.Id
-                                       join c in _context.FileInformations
-                                       on b.FileCode equals c.Id
                                        select new UserOfNewMessage
                                        {
                                            UserCode= b.Id,
                                            Name=b.Name,
-                                           Avatar= c.Path,
+                                           Avatar= b.Avatar,
                                        }).ToList();
 
 

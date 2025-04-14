@@ -1,0 +1,60 @@
+
+<!-- <div class="input-container">
+  <div class="input-box">
+      <label for="aes-encryption">AESEncryption</label>
+      <input [(ngModel)]="AESEncryptionString" name="AESEncryptionString" type="text" id="aes-encryption" placeholder="Nhập dữ liệu...">
+      <button (click)="encryptData()">Mã hóa</button>
+  </div>
+  <div class="input-box">
+      <label for="aes-decryption">AESDecryption</label>
+      <input [(ngModel)]="AESDecryptionString" name="AESDecryptionString" type="text" id="aes-decryption" placeholder="Nhập dữ liệu...">
+      <button (click)="decryptData()">Giải mã</button>
+  </div>
+  <div class="next">
+    <i class="fa-solid fa-arrows-turn-right"></i>
+    <p style="font-size: 20px;">{{CoverString}}</p>
+  </div>
+</div> -->
+<div class="infor">
+  <h1>Thông Tin Tài Khoản</h1>
+  <table class="custom-table">
+    <thead>
+      <tr>
+        <th>Tên tài khoản</th>
+        <th>Tên đăng nhập</th>
+        <th>Mật khẩu</th>
+        <th>Ngày sinh</th>
+        <th>Địa chỉ</th>
+        <th>Điện thoại</th>
+        <th>Email</th>
+      </tr>
+    </thead>
+    <tbody>
+      <ng-container *ngFor="let item of dataIfnor ;let i = index">
+      <tr *ngIf="i==0" style="background-color: wheat;">
+        <td (mouseenter)="showTooltip($event, item.name)">{{ item.name }}</td>
+        <td (mouseenter)="showTooltip($event, item.userName)">{{ item.userName }}</td>
+        <td (mouseenter)="showTooltip($event, item.userPassword)">{{ item.userPassword }} </td>       
+        <td (mouseenter)="showTooltip($event, item.birthday)" >{{ item.birthday }}</td>
+        <td (mouseenter)="showTooltip($event, item.address)" >{{ item.address }}</td>
+        <td (mouseenter)="showTooltip($event, item.phoneNumber)" >{{ item.phoneNumber }}</td>
+        <td (mouseenter)="showTooltip($event, item.email)" >{{ item.email }}</td>
+      </tr>
+      <tr *ngIf="i!=0">
+        <td (mouseenter)="showTooltip($event, item.name)">{{ item.name }}</td>
+        <td (mouseenter)="showTooltip($event, item.userName)">{{ item.userName }}</td>
+        <td (mouseenter)="showTooltip($event, item.userPassword)">{{ item.userPassword }}</td>       
+        <td (mouseenter)="showTooltip($event, item.birthday)" >{{ item.birthday }}</td>
+        <td (mouseenter)="showTooltip($event, item.address)" >{{ item.address }}</td>
+        <td (mouseenter)="showTooltip($event, item.phoneNumber)" >{{ item.phoneNumber }}</td>
+        <td (mouseenter)="showTooltip($event, item.email)" >{{ item.email }}</td>
+      </tr>
+    </ng-container>
+    </tbody>
+  </table>
+
+  <div class="tooltip-item" [ngStyle]="tooltipStyle" *ngIf="isTooltipVisible" (click)="copyToClipboard(tooltipContent)">
+    {{ tooltipContent }}
+    <span  [ngStyle]="{'display': displayClick}" class="tooltip-copy" >Click để copy</span>
+  </div>
+</div>

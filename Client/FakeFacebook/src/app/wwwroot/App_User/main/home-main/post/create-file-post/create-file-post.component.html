@@ -4,7 +4,7 @@
 <div class="view-file">
    <label *ngIf="this.ListFile.length == 0" for="add-image" class="no-file">
         <div class="icon"><i class="fa-solid fa-files-medical"></i></div>
-        <h6>Thêm ảnh</h6>
+        <h6>Thêm ảnh/video</h6>
    </label>
    <input (input)="onFileSelected($event)" style="display: none;" id="add-image" type="file" multiple>
    <ul *ngIf="this.ListFile.length > 0" class="list-file">
@@ -17,10 +17,10 @@
         <i class="fa-light fa-xmark"></i>
        </div>
        <div class="action">
-           <!-- <div  class="button-action">
+           <div  class="button-action">
                 <i class="fa-solid fa-pen"></i>
                 <p>Chỉnh sửa tất cả</p>
-           </div> -->
+           </div>
            <label class="button-action">
                  <i class="fa-solid fa-files-medical"></i>
                  <p>Thêm ảnh</p>

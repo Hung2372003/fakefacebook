@@ -1,0 +1,190 @@
+body {
+  font-family: 'Poppins', sans-serif;
+  background: linear-gradient(to right, #e0eafc, #cfdef3);
+  color: #333;
+}
+
+.infor {
+  max-height: 100vh;
+  overflow-y: auto;
+  position: relative;
+  padding: 30px;
+  padding-top: 0px;
+  background: #ffffff;
+  border-radius: 20px;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.1);
+  margin: 40px auto;
+  width: 90%;
+  max-width: 1200px;
+  transition: all 0.5s ease;
+}
+
+.infor h1 {
+  text-align: center;
+  color: #222f3e;
+  margin-top: 25px;
+  font-size: 27px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+
+}
+
+.custom-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0 15px;
+  margin-bottom: 5%
+}
+
+.custom-table thead tr {
+  background: linear-gradient(90deg, #4facfe 0%, #00f2fe 100%);
+  color: #ffffff;
+  border-radius: 12px !important;
+  position: sticky;
+  overflow: hidden;
+  top: 0;   
+  z-index: 10;
+}
+.custom-table thead th {
+  position: sticky; 
+  top: 0;                
+  z-index: 10;   
+ 
+
+         
+}
+
+.custom-table th {
+  text-transform: uppercase;
+  font-weight: 600;
+  font-size: 14px;
+  letter-spacing: 0.08em;
+  padding: 15px;
+  text-align: center;
+  border: none;
+}
+
+.custom-table tbody tr {
+  background-color: #ffffff;
+  transition: all 0.3s ease;
+  border-radius: 12px;
+  box-shadow: 0px 12px 30px rgba(0, 0, 0, 0.05);
+}
+
+.custom-table tbody tr:hover {
+  transform: scale(1.02);
+  box-shadow: 0px 15px 35px rgba(0, 0, 0, 0.1);
+  background-color: #f7f9fc;
+}
+
+.custom-table td {
+  padding: 15px 20px;
+  text-align: center;
+  color: #555;
+  font-size: 14px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 150px;
+}
+
+.custom-table td:first-child {
+  border-top-left-radius: 12px;
+  border-bottom-left-radius: 12px;
+}
+
+.custom-table td:last-child {
+  border-top-right-radius: 12px;
+  border-bottom-right-radius: 12px;
+}
+
+/* Tooltip style */
+.tooltip-item {
+  position: fixed;
+  background: #222f3e;
+  color: #ffffff;
+  padding: 10px 15px;
+  font-size: 14px;
+  border-radius: 10px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+  z-index: 9999;
+  pointer-events: auto;
+  cursor: pointer;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+  white-space: nowrap;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.tooltip-item:hover {
+  transform: scale(1.05);
+}
+
+.tooltip-copy {
+  margin-top: 5px;
+  font-size: 12px;
+  color: #82ccdd;
+  text-align: center;
+}
+
+/* Scrollbar đẹp */
+.infor::-webkit-scrollbar {
+  width: 10px;
+}
+
+.infor::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #4facfe, #00f2fe);
+  border-radius: 8px;
+}
+
+.infor::-webkit-scrollbar-thumb:hover {
+  background: #357ab8;
+}
+
+.input-container {
+  display: flex;
+    gap: 15px;
+    margin-top: 15px;
+    flex-direction: row;
+    align-items: center;
+}
+.input-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+label {
+  font-size: 14px;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+input {
+  padding: 10px;
+  border: 2px solid #007bff;
+  border-radius: 5px;
+  outline: none;
+  width: 200px;
+  margin-bottom: 10px;
+}
+input:focus {
+  border-color: #0056b3;
+}
+button {
+  padding: 8px 15px;
+  border: none;
+  background-color: #007bff;
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px;
+}
+button:hover {
+  background-color: #0056b3;
+}
+.next{
+  padding-left: 50px;
+  font-size: 50px;
+  display: flex;
+}

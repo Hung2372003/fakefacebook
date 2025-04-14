@@ -204,10 +204,16 @@ title{
 
 app-chat-history{
   position: absolute;
+  border-radius: 8px;
+  box-shadow: 0 2px 7px 5px rgba(0, 0, 0, 0.1);
   min-width: 27%;
   max-width: 90%;
   top: 70px;
   right:  25px;
+  display: flex;
+  flex-direction: column;
+  max-height: 80vh;
+  max-width: 400px;
 }
 app-setting-accout{
   position: absolute;

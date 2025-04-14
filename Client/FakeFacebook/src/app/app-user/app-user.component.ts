@@ -18,7 +18,6 @@ import { HomeMainService } from '../wwwroot/App_User/main/home-main/Service/home
 export class AppUserComponent implements OnInit,AfterViewInit{
 constructor(
   @Inject(PLATFORM_ID) private platformId: Object,
-  private cdr: ChangeDetectorRef,
   private HomeManiService:HomeMainService
 ){}
 displayViewImage='none'

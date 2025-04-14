@@ -4,10 +4,11 @@ import { CommonModule, NgFor, NgIf } from '@angular/common';
 import { ConectSinglRService } from '../../../Service/conect-singl-r.service';
 import { ComeChatService } from '../../../Service/come-chat.service';
 import { ChatBoxService } from '../../chat-box/chat-box.service';
+import { ActivatedRoute, RouterLink } from '@angular/router';
 @Component({
     selector: 'app-chat-history',
     standalone: true,
-    imports: [CommonModule, NgFor, NgIf],
+    imports: [CommonModule, NgFor, NgIf,RouterLink],
     templateUrl: './chat-history.component.html',
     styleUrl: './chat-history.component.scss'
 })
@@ -18,13 +19,15 @@ export class ChatHistoryComponent implements OnInit {
   private ConectSinglRService:ConectSinglRService,
   private cdr: ChangeDetectorRef,
   private ComeChatService:ComeChatService,
-  private ChatBoxService:ChatBoxService
+  private ChatBoxService:ChatBoxService,
+    private getRoute: ActivatedRoute
 
  ){}
   contains(target: HTMLElement): boolean {
     return this.el.nativeElement.contains(target);
   }
 
+  displayOpenMessages='';
   listUserOnline:any;
   ListNewMessage:any;
   ngOnInit(): void {
@@ -37,6 +40,10 @@ export class ChatHistoryComponent implements OnInit {
         this.listUserOnline=listUserOnline;
         this.cdr.detectChanges();
       })
+      if(this.getRoute.snapshot.url.join('/')=='messages'){
+        this.displayOpenMessages='none'
+  
+      } 
   }
 
   openChat(data:any){

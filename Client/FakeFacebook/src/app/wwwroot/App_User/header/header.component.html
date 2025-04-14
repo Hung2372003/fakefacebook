@@ -3,10 +3,10 @@
         <li  routerLink="/app-user/home-main"  class="icon-page" style="color: #0866ff;font-size: 40px;">
             <i class="fa-brands fa-facebook"></i>
         </li>
-        <!-- <li class="seach-app">
+        <li class="seach-app">
             <label><i class="fa-solid fa-magnifying-glass"></i></label>    
             <input id="seach-app" type="text" placeholder="Tìm kiếm trên facebook">    
-        </li> -->
+        </li>
     </ul>
     <ul class="header-bw">
         <li routerLink="/app-user/home-main" routerLinkActive="active" class="icon-header-bw tooltip-container" id="home=app-user" >
@@ -19,7 +19,7 @@
             <!-- <span class="tooltip-text">Video</span> -->
             <!-- <i class="fa-regular fa-tv"></i> -->
         </li>
-        <!-- <li title="marketplace" class="icon-header-bw tooltip-container" id="marketplace">
+        <li title="marketplace" class="icon-header-bw tooltip-container" id="marketplace">
             <span class="tooltip-text">Marketplace</span>
             <i class="fa-solid fa-store"></i>
         </li>
@@ -27,30 +27,30 @@
             <span class="tooltip-text">Nhóm</span>
             <i class="fa-solid fa-people-group"></i>
         </li>
-        <li class="icon-header-bw tooltip-container" title="Trò chơi" id="play-game">
+        <!-- <li class="icon-header-bw tooltip-container" title="Trò chơi" id="play-game">
             <span class="tooltip-text">Trò chơi</span>
             <i class="fa-regular fa-gamepad"></i>
         </li> -->
     </ul>
     <ul class="header-id">
-        <!-- <li title="Menu" id="menu" class="tooltip-container">
+        <li title="Menu" id="menu" class="tooltip-container">
             <span class="tooltip-text">Menu</span>
             <i class="fa-solid fa-grid"></i>
-        </li> -->
+        </li>
         <li *ngIf="messageHistoryChat>0;else notMessage" matBadge="{{messageHistoryChat}}" #chatHistory [ngClass]="{'active-setting': active}" (click)="openChatHistory()" id="messager"  class="tooltip-container">
             <span class="tooltip-text">Messager</span>
             <i class="fa-brands fa-facebook-messenger"></i>
         </li>
         <ng-template #notMessage>
-            <li #chatHistory [ngClass]="{'active-setting': active}" (click)="openChatHistory()" id="messager"  class="tooltip-container">
-                <span class="tooltip-text">Messager</span>
+            <li #chatHistory [ngClass]="{'active-setting': active}" *ngIf="displayMessager !== 'none'" (click)="openChatHistory()" id="messager"  class="tooltip-container">
+                <span class="tooltip-text">Messenger</span>
                 <i class="fa-brands fa-facebook-messenger"></i>
             </li>
         </ng-template>
-        <!-- <li  id="notification" title="Thông báo" class="tooltip-container">
+        <li  id="notification" title="Thông báo" class="tooltip-container">
             <span class="tooltip-text">Thông báo</span>
             <i class="fa-solid fa-bell"></i>
-        </li> -->
+        </li>
         <li #settingAccount (click)="openSettingAccount()" class="avatar tooltip-container" title="Tài khoản">
             <span class="tooltip-text">Tài khoản</span>
             <img class="avatar" src="{{PersionalInformation.avatar}}" alt="">

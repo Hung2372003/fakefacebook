@@ -10,6 +10,8 @@ import { FriendComponent } from './wwwroot/App_User/main/friend/friend.component
 import { FriendRequestComponent } from './wwwroot/App_User/main/friend/friend-request/friend-request.component';
 import { ListFriendComponent } from './wwwroot/App_User/main/friend/list-friend/list-friend.component';
 import { ListSearchFriendComponent } from './wwwroot/App_User/main/friend/list-search-friend/list-search-friend.component';
+import { AppMessagesComponent } from './app-messages/app-messages.component';
+import { AppAdminComponent } from './app-admin/app-admin.component';
 export const routes: Routes = [ 
    {path: '', redirectTo: 'sign-in', pathMatch: 'full'},
    { path: 'sign-in', component: SignInComponent },
@@ -30,5 +32,8 @@ export const routes: Routes = [
           },
         ],    
     },
+    
     { path: 'my', component: HomeMainComponent },
+    { path:'messages', component: AppMessagesComponent },
+    { path:'admin', component: AppAdminComponent },
 ];

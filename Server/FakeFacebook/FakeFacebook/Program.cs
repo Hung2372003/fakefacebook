@@ -5,8 +5,10 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using System.Text;
 using Microsoft.OpenApi.Models;
 using FakeFacebook.Hubs;
+using FakeFacebook.Commom;
 
 var builder = WebApplication.CreateBuilder(args);
+builder.Services.AddSingleton<RsaKeyManager>();
 //builder.WebHost.UseUrls("http://localhost:7158");
 builder.WebHost.UseUrls("http://0.0.0.0:7158", "https://0.0.0.0:5176");
 builder.Services.AddCors(options =>
@@ -18,7 +20,8 @@ builder.Services.AddCors(options =>
             //policy.AllowAnyOrigin()
                   .AllowAnyMethod()
                   .AllowAnyHeader()
-                  .AllowCredentials();
+                  .AllowCredentials()
+                  ;
 
 
         });
@@ -95,6 +98,16 @@ builder.Services.AddAuthentication(options =>
     });
 builder.Services.AddAuthorization();
 
+builder.Services.AddScoped<JwtTokenService>();
+
+// Add Authorization với Policy
+builder.Services.AddAuthorization(options =>
+{
+    options.AddPolicy("ViewSensitiveDataPolicy", policy =>
+        policy.RequireRole("Admin")
+              .RequireClaim("Permission", "ViewSensitiveData"));
+});
+
 builder.Services.AddSwaggerGen(c =>
 {
     c.SwaggerDoc("v1", new OpenApiInfo { Title = "My API", Version = "v1" });
@@ -148,9 +161,6 @@ if (app.Environment.IsDevelopment())
     });
 }
 app.UseDefaultFiles();
-app.UseStaticFiles();
-
-
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 app.UseRouting();
@@ -160,5 +170,14 @@ app.UseAuthentication();
 app.UseAuthorization();
 app.MapHub<ChatHub>("/hub");
 app.MapControllers();
+app.UseSpa(spa =>
+{
+    spa.Options.SourcePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/AngularView");
 
+    //if (app.Environment.IsDevelopment())
+    //{
+    //    // Nếu bạn đang phát triển, sử dụng Proxy đến server Angular để phục vụ ứng dụng từ ng serve
+    //    spa.UseProxyToSpaDevelopmentServer("http://localhost:4200");
+    //}
+});
 app.Run();

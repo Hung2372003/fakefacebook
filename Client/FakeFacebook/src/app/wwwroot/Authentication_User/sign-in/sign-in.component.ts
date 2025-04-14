@@ -1,9 +1,10 @@
-import { Component,Inject, PLATFORM_ID } from '@angular/core';
-import { Router, RouterLink,RouterLinkActive, RouterModule } from '@angular/router';
+import { Component } from '@angular/core';
+import { Router, RouterLink, RouterModule } from '@angular/router';
 import {  FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { AuthencationUserService } from '../authencation-user.service';
-import { ConectSinglRService } from '../../Service/conect-singl-r.service';
+import { AESEncryption } from '../../../AES/AESEncryption';
+// Kiểm tra xem đã có cặp khóa RSA chưa, nếu chưa thì tạo
 @Component({
     selector: 'app-sign-in',
     standalone: true,
@@ -16,14 +17,14 @@ export class SignInComponent {
   constructor(
     private router:Router,
     private AuthencationServices:AuthencationUserService,
-    private ConectSinglRService:ConectSinglRService
 
   ){}
 
   //  UserAccout: SignInModel={UserName:'',Password:''}
    public UserAccout={
     UserName:'',
-    Password:''
+    Password:'',
+    Key:''
    }
    responseData: any;
    ErrorPassword=false;
@@ -36,16 +37,20 @@ export class SignInComponent {
     this.ErrorStUserName=''
     this.ErrorStPassword=''
    }
+   
    async submit(){ 
-      const message=await  this.AuthencationServices.SignIn(this.UserAccout);
+      let key =this.AuthencationServices.generateRandomAESKey(16);
+      let publicRSAKey= await this.AuthencationServices.getRSAKey()
+      this.UserAccout.Password=AESEncryption.encryption( this.UserAccout.Password,key)
+      this.UserAccout.UserName=AESEncryption.encryption( this.UserAccout.UserName,key)
+      this.UserAccout.Key = this.AuthencationServices.encryptWithPublicKey(publicRSAKey.toString(),key)
+      const message=await this.AuthencationServices.SignIn(this.UserAccout);
+      this.UserAccout==null;
       if(message.error==false){
         localStorage.setItem('token', message.object)
         localStorage.setItem('userCode',message.id)
-  
-        // this.ConectSinglRService.startConnection();
-        this.router.navigate(['/app-user'])
-        // window.location.href='/app-user';
-        // window.open('/app-user')
+        this.router.navigate(['/admin'])
+        // this.router.navigate(['/messages'])
       }
       else{
         if(message.title=='PassFalse') {
@@ -57,7 +62,7 @@ export class SignInComponent {
           this. ErrorStUserName='block'
         }
       }            
-   
+    // }
    }
 
 }

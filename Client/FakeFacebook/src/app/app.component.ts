@@ -3,8 +3,11 @@ import {Router, RouterModule, RouterOutlet, NavigationEnd,NavigationStart } from
 import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { ChangeDetectorRef } from '@angular/core';
 
+
+
 declare var $: any;
 // declare var initSwiper: () => void;
+
 @Component({
     selector: 'app-root',
     standalone: true,

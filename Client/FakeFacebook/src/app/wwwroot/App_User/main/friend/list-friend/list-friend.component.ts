@@ -17,11 +17,15 @@ export class ListFriendComponent implements OnInit{
   ){}
   listFriend:any;
   async ngOnInit(): Promise<void> {
-      this.listFriend= await this.CallApiService.CallApi('ContactUser/ListFrends','get',null);
+    await this.getListFriend();
 
   }
-  OpenInfor(id:any){
+  async openInfor(id:any){
     this.HeaderService.openPersionalInformation(id);
+    await this.getListFriend();
+  }
+  async getListFriend(){
+    this.listFriend= await this.CallApiService.CallApi('ContactUser/ListFrends','get',null);
   }
  
 }

@@ -8,6 +8,7 @@ import { FormsModule } from '@angular/forms';
 import { ConectSinglRService } from '../../Service/conect-singl-r.service';
 import { Renderer2 } from '@angular/core';
 import { HeaderService } from '../header/header.service';
+import { ActivatedRoute } from '@angular/router';
 @Component({
     selector: 'app-chat-box',
     standalone: true,
@@ -33,7 +34,8 @@ export class ChatBoxComponent  implements  AfterViewInit, OnInit  {
     private cdr: ChangeDetectorRef,
     private ConectSinglRServices:ConectSinglRService,
     private renderer: Renderer2,
-    private HeaderService:HeaderService
+    private HeaderService:HeaderService,
+    private getRoute: ActivatedRoute
  
   ){}
 
@@ -75,7 +77,13 @@ export class ChatBoxComponent  implements  AfterViewInit, OnInit  {
     Avatar:string,
   }>=[]
 
+  isHome=true
+
   ngOnInit() {
+    if(this.getRoute.snapshot.url.join('/')=='messages'){
+      this.isHome=false
+
+    } 
     this.selfCode=Number(localStorage.getItem('userCode'))
     //nhận tin nhắn
     this.ChatBoxService.onMessageReceived((GroupChatId, Contents,UserCode,ListFile) => {

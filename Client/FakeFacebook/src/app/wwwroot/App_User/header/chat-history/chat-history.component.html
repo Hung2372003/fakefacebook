@@ -1,7 +1,12 @@
 <div class="chat-container">
     <!-- Thanh tìm kiếm -->
     <div class="header-title">
-        Đoạn Chat
+        <p>Đoạn Chat</p>
+        <div [ngStyle]="{'display': displayOpenMessages}" class="open-messenger tooltip-container" routerLink="/messages">
+            <span class="tooltip-text">Xem tất cả trong Messenger</span>
+            <i class="fa-solid fa-arrows-maximize"></i>
+            <div class="dot-none"></div>
+        </div>
     </div>
 
     <div class="search-bar">
@@ -42,5 +47,28 @@
                 </div>
             </div>
         </ng-container>
+        <!-- <ng-container *ngFor="let item of ListNewMessage">
+            <div (click)="openChat(item)" class="chat-item">
+                <img src="{{item.groupAvatar}}" alt="Avatar" class="avatar">
+                <ng-container *ngIf="checkOnline(item.listUser)">
+                    <div class="online-dot"></div>
+                </ng-container>
+              
+                <div class="chat-info-row">
+                    <div class="chat-info">
+                        <h4 class="name">{{item.groupName}}</h4>
+                        <ng-container *ngIf="item.status==true;else notRead">
+                            <p class="last-message">{{item.newMessage.content}}</p>
+                        </ng-container>
+                        <ng-template #notRead>
+                            <p style="font-weight: 500;color: black;" class="last-message">{{item.newMessage.content}}</p>
+                        </ng-template>
+                    </div>
+                    <div>
+                         <span class="time">{{setDate(item.newMessage.createdTime)}}</span>
+                    </div>
+                </div>
+            </div>
+        </ng-container> -->
     </div>
 </div>

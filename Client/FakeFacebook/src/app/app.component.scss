@@ -7,4 +7,11 @@
         overflow: hidden;
 
   }
+
+  :host ::ng-deep app-app-messages {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
   

@@ -301,6 +301,7 @@ app-create-post{
  grid-template-columns: repeat(3,1fr);
  gap: 5px;
  height: 40%;
+ overflow: hidden;
 }
 
 .image-third{

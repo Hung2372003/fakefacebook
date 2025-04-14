@@ -1,0 +1,33 @@
+.mesage-app{
+    display: flex;
+    overflow-y: auto;
+    flex: 1;
+    flex-direction: row;
+}
+app-chat-history{
+    // border-radius: 8px;
+    // box-shadow: 0 2px 7px 5px rgba(0, 0, 0, 0.1);
+    border: 1px solid rgb(193, 193, 193);
+    width: 25%;
+    display: flex;
+    flex-direction: row;
+}
+app-header{
+    position: relative;
+    z-index: 1;
+}
+app-view-image{
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgb(58 58 58 / 92%);
+    z-index: 1;
+}
+app-chat-box{
+    width: 75%;
+}

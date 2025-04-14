@@ -14,6 +14,13 @@ namespace FakeFacebook.Models
         public bool? IsDeleted { get; set; }
         public string? PhoneNumber { get; set; }
         public int FileCode { get; set; }
+        public bool? IsEncryption { get; set; }
+        public string? Birthday { get; set; }
+        public string? Avatar { get; set; }
+        public DateTime? CreatedTime { get; set; }
+        public DateTime? UpdatedTime { get; set; }
+        public int? UpdatedBy { get; set; }
+        public int? CreatedBy { get; set; }
 
     }
 }

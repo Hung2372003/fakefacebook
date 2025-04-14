@@ -8,6 +8,7 @@ import { HeaderService } from './header.service';
 import { PersionalInformationComponent } from "./persional-information/persional-information.component";
 import {MatBadgeModule} from '@angular/material/badge';
 import { ChatBoxService } from '../chat-box/chat-box.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
     selector: 'app-header',
@@ -29,7 +30,8 @@ export class HeaderComponent implements OnInit ,AfterViewInit,OnDestroy{
     private ConectSinglRService:ConectSinglRService,
     private HeaderService:HeaderService,
     private ChatBoxService:ChatBoxService,
-    private cdr:ChangeDetectorRef
+    private cdr:ChangeDetectorRef,
+    private getRoute: ActivatedRoute
     
   ){}
  
@@ -49,6 +51,7 @@ export class HeaderComponent implements OnInit ,AfterViewInit,OnDestroy{
  displayPersionalInformation='none';
  PersionalInformation :any = {};
  active=false;
+
  messageHistoryChat:number=0;
   async Logout() {
     localStorage.clear();
@@ -56,6 +59,7 @@ export class HeaderComponent implements OnInit ,AfterViewInit,OnDestroy{
   }
 
 
+  displayMessager='';
    ngOnInit(): void {
     let userCode= localStorage.getItem('userCode')
     this.HeaderService.getPersionalInformation(userCode)
@@ -84,9 +88,18 @@ export class HeaderComponent implements OnInit ,AfterViewInit,OnDestroy{
       }
       this.messageHistoryChat=cout;
     })
+
+    let currentRoute = this.getRoute.snapshot.url.map(seg => seg.path).join('/');
+    console.log('Current Route:', currentRoute);
+
+    if (currentRoute === 'messages') {
+      this.displayMessager = 'none';
+      this.cdr.detectChanges();
+    }
   }
 
   async ngAfterViewInit()  {
+
     // Các phần tử đã được khởi tạo ở đây
     this.HeaderService.getHistoryChat()
     this.action_2 = this.HeaderService.ActionCloseHistoryMessage$.subscribe(()=>{

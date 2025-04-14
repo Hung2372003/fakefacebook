@@ -13,7 +13,6 @@ namespace FakeFacebook.Data
         public DbSet<FriendDouble> FriendDoubles { get; set; }
         public DbSet<FileInformation> FileInformations { get; set; }
         public DbSet<ChatContent> ChatContents { get; set; }
-        public DbSet<ChatGroupDouble> ChatGroupDoubles { get; set; }
         public DbSet<FileChat> FileChats { get; set; }
         public DbSet<ChatGroups> ChatGroups { get; set; }
         public DbSet<GroupMember> GroupMembers { get; set; }

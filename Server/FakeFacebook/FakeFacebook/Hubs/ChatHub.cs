@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.VisualBasic;
 using System.Security.Claims;
 
-[Authorize]
+//[Authorize]
 public class ChatHub : Hub
     {
     private static readonly Dictionary<string, string> _connections = new Dictionary<string, string>();
@@ -18,7 +18,6 @@ public class ChatHub : Hub
         await Clients.All.SendAsync("ListUserOnline", ListUser);
         await base.OnConnectedAsync();
     }
-
     // khi ngát kết nối clent
     public override async Task OnDisconnectedAsync(Exception? exception)
     {
@@ -36,6 +35,7 @@ public class ChatHub : Hub
         await base.OnDisconnectedAsync(exception);
     }
 
+    
     //kết nối đến GroupChat
     public async Task JoinGroup(string GroupChatId)
     {
@@ -65,7 +65,7 @@ public class ChatHub : Hub
         catch (Exception ex)
         {
             Console.WriteLine($"Error in SendMessageToGroup: {ex.Message}");
-            throw;  // Để trả lỗi về phía client
+            throw; 
         }
 
     }
@@ -80,7 +80,7 @@ public class ChatHub : Hub
         catch (Exception ex)
         {
             Console.WriteLine($"Error in SendMessageToGroup: {ex.Message}");
-            throw;  // Để trả lỗi về phía client
+            throw;  
         }
 
     }

@@ -31,13 +31,14 @@ export class ViewImageComponent implements AfterViewInit{
   listImage:Array<any>=[]
   activeSlideId=''
   ngAfterViewInit(): void {
-      this.HomeMainService.fIleData$.subscribe(data=>{
+      this.HomeMainService.fIleData$.subscribe(async data=>{
         if(data.listFile.length>0){
           this.listImage=data.listFile
-          this.activeSlideId = data.fileId.toString();      
-          this.activeSrcollCarouselIndicators(data.fileId.toString())
-          this.cdr.detectChanges();
+          this.activeSlideId = await data.fileId.toString();  
+          this.cdr.detectChanges();    
+          this.activeSrcollCarouselIndicators(data.fileId.toString())        
         }
+        this.cdr.detectChanges();
        
       }) 
   }

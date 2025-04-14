@@ -54,6 +54,7 @@ export class CreateFilePostComponent implements AfterViewInit{
               file,
               previewUrl: reader.result
             });
+            this.cdr.detectChanges();
             
           };
           reader.readAsDataURL(file); // Tạo URL tạm thời cho ảnh
@@ -62,7 +63,6 @@ export class CreateFilePostComponent implements AfterViewInit{
     else if(this.ListFile.length<1){
     }
     input.value='';
-    this.cdr.detectChanges();
   }
   onAddFileSelected(event:Event){
     const input = event.target as HTMLInputElement;
@@ -77,13 +77,13 @@ export class CreateFilePostComponent implements AfterViewInit{
               file,
               previewUrl: reader.result
             });
+            this.cdr.detectChanges();
             
           };
           reader.readAsDataURL(file); // Tạo URL tạm thời cho ảnh
       };
       input.value=''
     }
-    this.cdr.detectChanges();
   }
   removeFile(){
     this.ListFile=[];
